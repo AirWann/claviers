@@ -1,5 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
-[0] Config.pm:307> INFO - Logfile is 'rapport.blg'
-[109] biber-MSWIN32:322> INFO - === 
-[135] Biber.pm:415> INFO - Reading 'rapport.bcf'
-[281] Utils.pm:304> WARN - No data sources defined!
+[1] Config.pm:307> INFO - Logfile is 'rapport.blg'
+[133] biber-MSWIN32:322> INFO - === 
+[158] Biber.pm:415> INFO - Reading 'rapport.bcf'
+[304] Biber.pm:943> INFO - Found 1 citekeys in bib section 0
+[328] Biber.pm:4256> INFO - Processing section 0
+[329] Utils.pm:75> INFO - Globbing data source 'biblio.bib'
+[341] Utils.pm:91> INFO - Globbed data source 'biblio.bib' to biblio.bib
+[362] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[368] bibtex.pm:1653> INFO - LaTeX decoding ...
+[378] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio.bib'
+[430] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[431] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[431] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[431] Biber.pm:4090> INFO - No sort tailoring available for locale 'fr-FR'
+[441] bbl.pm:652> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
+[444] bbl.pm:755> INFO - Output to rapport.bbl

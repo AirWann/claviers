@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{biblatex} 
-
+\addbibresource{biblio.bib}
 \usepackage[T1]{fontenc}    % Encodage des accents
 \usepackage[utf8]{inputenc} % Lui aussi
 \usepackage[french]{babel} % Pour la traduction française
@@ -37,7 +37,7 @@
 \usepackage{xparse}
 \usepackage{newpxtext,newtxmath}
 \usepackage[babel=true]{microtype}
-
+\usepackage{csquotes}
 
 \input{keyboard_symbols}
 
@@ -69,7 +69,7 @@
 
 
 	\section{Claviers à états}
-    Les claviers comme définis précédemment n'ont aucune mémoire, ce qui les rend incapables de stocker une quelconque information.
+    Les claviers comme définis précédemment\cite{bible} n'ont aucune mémoire, ce qui les rend incapables de stocker une quelconque information.
     Pour pallier à cela, on ajoute des états :
     \begin{defétats}[Clavier à état]
         Un clavier à état est la donnée de $(Q,K,\Delta ,F,s_0)$ où :
@@ -113,4 +113,7 @@
         il existe une exécution de $K$ qui écrit $\omega$ et qui utilise au plus $\mathcal{B}(K)$ lettres inutiles.
     \end{inutilesbornés}
 
+
+    \clearpage
+    \printbibliography
 \end{document}
