@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{biblatex} 
+
+\usepackage[T1]{fontenc}    % Encodage des accents
+\usepackage[utf8]{inputenc} % Lui aussi
+\usepackage[french]{babel} % Pour la traduction française
+\usepackage{numprint}       % Histoire que les chiffres soient bien
+
+\usepackage{amsmath}        % La base pour les maths
+\usepackage{mathrsfs}       % Quelques symboles supplémentaires
+\usepackage{amssymb}        % encore des symboles.
+\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
+
+\usepackage{knowledge}
+
+\usepackage[svgnames]{xcolor} % De la couleur
+\usepackage{geometry}       % Gérer correctement la taille
+
+
+\usepackage{graphicx} % inclusion des graphiques
+\usepackage{wrapfig}  % Dessins dans le texte.
+\usepackage{mdframed}
+\usepackage{thmbox}
+\usepackage{tikz}     % Un package pour les dessins (utilisé pour l'environnement {code})
+\usepackage{tikz-cd}  % Pour les diagrammes commutatifs
+\usetikzlibrary{cd}
+\usepackage[toc,page]{appendix}
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.6pt}
+
+
+\newcommand{\ul}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
+}
+\hyphenpenalty 500
+
+\newcommand{\Z}{\mathbb{Z}} 
+\newcommand{\Zp}[1][p]{\Z/#1\Z} 
+\newcommand{\newlemme}[1]{\newtheorem[S]{#1}[cpt]{Lemme}}
+\newcommand{\newdef}[1]{\newtheorem[S]{#1}[cpt]{Définition}}
+\newcommand{\newthm}[1]{\newtheorem[M]{#1}[cpt]{Théorème}}
+\renewcommand{\L}{\mathcal{L}}
+\newcounter{cpt}
+
+\newdef{defétats}
+\newlemme{RatdansQRK}
+\newdef{utiles}
+\newlemme{inutilesbornés}
+
+\begin{document}
+	\section{Claviers à états}
+    Les claviers comme définis précédemment n'ont aucune mémoire, ce qui les rend incapables de stocker une quelconque information.
+    Pour pallier à cela, on ajoute des états :
+    \begin{defétats}[Clavier à état]
+        Un clavier à état est la donnée de $(Q,K,\Delta ,F,s_0)$ où :
+        \begin{itemize}
+            \item $Q$ est un ensemble d'\textbf{états}
+            \item $K$ est un clavier
+            \item $\Delta \subset Q \times K \times Q$ est un ensemble fini de \textbf{transitions}
+            \item $F$ est un ensemble d'états dits \textbf{finaux}
+            \item $s_0$ est un état dit \textbf{initial}
+        \end{itemize}
+    \end{defétats}
+    Intuitivement, l'idée d'un clavier à états est que seules certaines touches sont applicables depuis un certain état. L'application d'une touche modifie le mot (comme pour les claviers habituels)
+    et fait passer dans un autre état (comme pour un automate).
+    On notera QX l'ensemble des claviers à états sur des claviers de classe X : QMK, QFRK, etc... 
+    On négligera la présence du symbole entrée, car on accepte par état final.
+    Par abus de langage, on dira d'un langage $\L$ qu'il est dans une classe pour dire qu'il est reconnu par un clavier de cette classe : 
+    par exemple on dira $\L \in$ QGK si il existe $K \in$ QGK tel que $\L = \L(K)$.
+
+
+    \subsection{QRK = Rat}
+    On sait que (théorème 101/102) RK $\subset$ Rat, et que l'inclusion est stricte, comme le montre le langage $a* + b*$. En ajoutant des états,
+    QRK est donc un bon candidat pour être égal à Rat, et la preuve de cette égalité est l'objet de cette section.
+    
+    \begin{RatdansQRK}
+        Rat $\subset$ QRK
+    \end{RatdansQRK}
+    En effet, étant donné un automate $\mathcal{A}$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
+    ne font que écrire une unique lettre.
+
+    Pour pouvoir montrer l'inclusion inverse, on va d'abord définir les notions de lettre utile et inutile.
+    \begin{utiles}
+            yyyyyyy
+    \end{utiles}    
+    \begin{inutilesbornés}
+        Soit $K$ un clavier à états de QRK. Il existe $\mathcal{B}(K)$, ne dépendant que de $K$, telle que pout tout mot $\omega \in \L(K)$,
+        il existe une exécution de $K$ qui écrit $\omega$ et qui utilise au plus $\mathcal{B}(K)$ lettres inutiles.
+    \end{inutilesbornés}
+
+\end{document}
