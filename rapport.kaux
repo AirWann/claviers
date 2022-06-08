@@ -14,7 +14,7 @@
 \KAuxCommand \KAuxUseKnowledge {mmm}{Package knowledge: Identifies the use of some knowledge. Arguments {namespace}{instance}{knowledge}.}
 
 
-\KAuxFileAt {rapport.tex}{53}
+\KAuxFileAt {rapport.tex}{65}
 \KAuxScopeNewInstance {base}{base}{}
 \KAuxScopeNewInstance {document}{document}{base}
 \KAuxEOF {}
