@@ -265,6 +265,8 @@ INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/contour/pdftex.cnt
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm
+INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/float/float.sty
+INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/float/float.sty
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
@@ -447,6 +449,7 @@ INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Italic-tlf-t1.tfm
+INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Regular-tlf-sc-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
@@ -456,7 +459,6 @@ INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxsym.vf
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/txfonts/txsya.tfm
-INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Regular-tlf-sc-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1npxtt.fd
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1npxtt.fd
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/txfonts/t1xtt.tfm

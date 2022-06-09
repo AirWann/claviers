@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  9 JUN 2022 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  9 JUN 2022 14:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -870,19 +870,26 @@ File: pdftex.cnt 2004/11/18 v2.14 Print contoured text (HH, MH)
 \ULC@box=\box91
 Package: ulem 2019/11/18
 \ULdepth=\dimen286
+) (d:/Programs/texlive/2020/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count464
+\float@exts=\toks43
+\float@box=\box92
+\@float@everytoks=\toks44
+\@floatcapt=\box93
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count464
-\calc@Bcount=\count465
+\calc@Acount=\count465
+\calc@Bcount=\count466
 \calc@Adimen=\dimen287
 \calc@Bdimen=\dimen288
 \calc@Askip=\skip149
 \calc@Bskip=\skip150
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count466
+\calc@Ccount=\count467
 \calc@Cskip=\skip151
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
@@ -891,7 +898,7 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count467
+\g_MT_multlinerow_int=\count468
 \l_MT_multwidth_dim=\dimen289
 \origjot=\skip152
 \l_MT_shortvdotswithinadjustabove_dim=\dimen290
@@ -900,7 +907,7 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \l_MT_below_intertext_sep=\dimen293
 \l_MT_above_shortintertext_sep=\dimen294
 \l_MT_below_shortintertext_sep=\dimen295
-\xmathstrut@box=\box92
+\xmathstrut@box=\box94
 \xmathstrut@dim=\dimen296
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -928,10 +935,10 @@ LaTeX Info: Redefining \textulc on input line 49.
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
  (d:/Programs/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex (d:/Programs/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks43
-\XKV@tempa@toks=\toks44
+\XKV@toks=\toks45
+\XKV@tempa@toks=\toks46
 )
-\XKV@depth=\count468
+\XKV@depth=\count469
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (d:/Programs/texlive/2020/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
@@ -952,12 +959,12 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
-\tx@cntz=\count469
+\tx@cntz=\count470
  (d:/Programs/texlive/2020/texmf-dist/tex/generic/kastrup/binhex.tex)
-\tx@Isdigit=\count470
-\tx@IsAlNum=\count471
-\tx@tA=\toks45
-\tx@tB=\toks46
+\tx@Isdigit=\count471
+\tx@IsAlNum=\count472
+\tx@tA=\toks47
+\tx@tB=\toks48
 \tx@su=\read5
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 317.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -1035,7 +1042,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 \symlargesymbolsTXA=\mathgroup13
 LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
 (Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 570.
-\tx@sbptoks=\toks47
+\tx@sbptoks=\toks49
 LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 792.
 LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 793.
 LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 794.
@@ -1049,22 +1056,22 @@ LaTeX Font Info:    Redeclaring math delimiter \vert on input line 805.
 LaTeX Font Info:    Redeclaring math accent \dot on input line 876.
 LaTeX Font Info:    Redeclaring math accent \ddot on input line 877.
 LaTeX Font Info:    Redeclaring math accent \vec on input line 1940.
-\ntx@numstart=\count472
-\ntx@UCstart=\count473
-\ntx@lcstart=\count474
-\ntx@tmpc=\count475
-\ntx@imath=\count476
-\ntx@jmath=\count477
+\ntx@numstart=\count473
+\ntx@UCstart=\count474
+\ntx@lcstart=\count475
+\ntx@tmpc=\count476
+\ntx@imath=\count477
+\ntx@jmath=\count478
 LaTeX Info: Redefining \Bbbk on input line 2449.
 LaTeX Info: Redefining \not on input line 2598.
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
-\MT@toks=\toks48
-\MT@count=\count478
+\MT@toks=\toks50
+\MT@count=\count479
 LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen297
 LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
-\MT@listname@count=\count479
+\MT@listname@count=\count480
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2019/11/18 v2.7d Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 914.
@@ -1076,13 +1083,13 @@ Package microtype Info: Loading configuration file microtype.cfg.
 File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
 )) (d:/Programs/texlive/2020/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count480
-\csq@gtype=\count481
-\csq@glevel=\count482
-\csq@qlevel=\count483
-\csq@maxlvl=\count484
-\csq@tshold=\count485
-\csq@ltx@everypar=\toks49
+\csq@reset=\count481
+\csq@gtype=\count482
+\csq@glevel=\count483
+\csq@qlevel=\count484
+\csq@maxlvl=\count485
+\csq@tshold=\count486
+\csq@ltx@everypar=\toks51
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2019-12-06 v5.2j csquotes generic definitions (JAW)
 )
@@ -1096,7 +1103,7 @@ Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 ) (c:/Users/elpub/Documents/Cours/claviers/keyboard_symbols.tex)
-\c@cpt=\count486
+\c@cpt=\count487
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -1162,17 +1169,17 @@ LaTeX Info: Redefining \up on input line 66.
 
  (d:/Programs/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count487
+\scratchcounter=\count488
 \scratchdimen=\dimen298
-\scratchbox=\box93
-\nofMPsegments=\count488
-\nofMParguments=\count489
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count490
+\scratchbox=\box95
+\nofMPsegments=\count489
+\nofMParguments=\count490
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count491
 \MPscratchDim=\dimen299
-\MPnumerator=\count491
-\makeMPintoPDFobject=\count492
-\everyMPtoPDFconversion=\toks51
+\MPnumerator=\count492
+\makeMPintoPDFobject=\count493
+\everyMPtoPDFconversion=\toks53
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1213,10 +1220,10 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box94
+\AtBeginShipoutBox=\box96
 ABD: EveryShipout initializing macros
-\c@mv@tabular=\count493
-\c@mv@boldtabular=\count494
+\c@mv@tabular=\count494
+\c@mv@boldtabular=\count495
 LaTeX Info: Redefining \microtypecontext on input line 66.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
@@ -1325,18 +1332,18 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 {d:/Programs/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 12.0pt on input line 112.
- [2] [3]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 144.
+(Font)              scaled to size 12.0pt on input line 146.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/zpltlf/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 144.
+ [2] [3]
+LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 151.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1npxtt.fd
 File: t1npxtt.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 12.0pt on input line 144.
+(Font)              scaled to size 12.0pt on input line 151.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `npxtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1351,15 +1358,15 @@ Package logreq Info: Writing requests to 'rapport.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34295 strings out of 480608
- 700299 string characters out of 5903116
- 1339492 words of memory out of 5000000
- 49485 multiletter control sequences out of 15000+600000
- 603503 words of font info for 129 fonts, out of 8000000 for 9000
+ 34436 strings out of 480608
+ 703066 string characters out of 5903116
+ 1345901 words of memory out of 5000000
+ 49620 multiletter control sequences out of 15000+600000
+ 603618 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,15n,84p,863b,1941s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,17n,84p,863b,1941s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-sc.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}<d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txsys.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplbi.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (4 pages, 155594 bytes).
+Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (4 pages, 157029 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  64 compressed objects within 1 object stream

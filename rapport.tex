@@ -28,7 +28,7 @@
 \usepackage[normalem]{ulem}
 \renewcommand{\ULdepth}{1.8pt}
 \contourlength{0.6pt}
-
+\usepackage{float}
 %\usepackage{scrhack}
 %\usepackage{fix-cm}
 \usepackage{mathtools}
@@ -107,10 +107,10 @@
 
     Pour pouvoir montrer l'inclusion inverse, on va étudier plus précisément la structure du mot qu'on est en train d'écrire\footnote{On considère les automates comme \emph{générateurs}, qui écrivent progressivement le mot, plutôt que comme acceptateurs, qui le lisent puis acceptent ou non.}.
     
-    Soit $K$ un clavier de $\QRK$. En l'absence de flèche gauche, on sait que toutes les configurations étatiques sont de la forme $(w,q,\epsilon)$. De plus, lors d'un calcul acceptant, on peut à chaque étape diviser le mot courant $w$ en deux :
+    Soit $K$ un clavier de $\QRK$. En l'absence de flèche gauche, on sait que toutes les configurations étatiques sont de la forme $(w,q,\varepsilon)$. De plus, lors d'un calcul acceptant, on peut à chaque étape diviser le mot courant $w$ en deux :
     \begin{itemize}
         \item un préfixe $u$ qui ne sera jamais effacé, qui est donc un préfixe du mot qu'on cherche à écrire ; on dit qu'il est \emph{utile}.
-        \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}
+        \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
     On montre alors
     \begin{inutilesbornés}
@@ -125,21 +125,28 @@
     \begin{itemize}
         \item on rajoute un état $\iota$ à notre clavier, et on rajoute, pour toute transition $(s_{init},\retour^n w,s_{\alpha})$ une transition $(\iota,w,s_{\alpha})$
         \item on considère $\A$ dont les états sont  $( Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket ) \cup i$
-        \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes :
+        \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
             \begin{itemize}
-                \item pour tout $k$ tel que $r \leqslant k \leqslant \mathcal{B}(K) - \sharp t$, $s_{\alpha, k} \xrightarrow{\epsilon} s_{\beta, k + \sharp t}$
+                \item pour tout $k$ tel que $r \leqslant k \leqslant \mathcal{B}(K) - \sharp t$, $s_{\alpha, k} \xrightarrow{\varepsilon} s_{\beta, k + \sharp t}$
                 \item pour tout $j$ tel que $0 \leqslant j \leqslant |w| - 1$, $s_{\alpha, r} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
-            \end{itemize}    
+            \end{itemize} 
+        \item pour toute transition $\iota \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j \leqslant |w|$, $i \xrightarrow{w[1,|w|-j]} s_{\beta, j}$ (avec la convention $w[1,0] = \varepsilon$)   
     \end{itemize}
-    \begin{tikzcd}
-        {s_{\alpha,0}}                                                                                                                  &  &  & {s_{\beta,0}}              \\
-        \vdots                                                                                                                          &  &  & \vdots                     \\
-        {s_{\alpha,r}} \arrow[rrruu, "w", bend left] \arrow[rrru, "{w[1,|w|-1]}"] \arrow[rrr, "\dots", dotted] \arrow[rrrd, "\epsilon"] &  &  & {}                         \\
-        {s_{\alpha,r+1}} \arrow[rrrd, "\epsilon"]                                                                                       &  &  & {s_{\beta,|w|}}            \\
-        \vdots \arrow[rrrd, "\epsilon", dotted]                                                                                         &  &  & \vdots                     \\
-        \vdots \arrow[rrrd, "\epsilon", dotted]                                                                                         &  &  & \vdots                     \\
-        {s_{\alpha,\mathcal{B}(K)}}                                                                                                     &  &  & {s_{\beta,\mathcal{B}(K)}}
-    \end{tikzcd}
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzcd}
+            i \arrow[rrr, "w"] \arrow[rrrddd, "\varepsilon"] \arrow[rrrd, "{w[1,j]}", dotted] &  &  & {s_{\beta,0}}   &  & {s_{\alpha,0}}                                                                                                                     &  &  & {s_{\beta,0}}              \\
+                                                                                              &  &  & \vdots          &  & \vdots                                                                                                                             &  &  & \vdots                     \\
+                                                                                              &  &  & \vdots          &  & {s_{\alpha,r}} \arrow[rrruu, "w", bend left] \arrow[rrru, "{w[1,|w|-1]}"] \arrow[rrr, "\dots", dotted] \arrow[rrrd, "\varepsilon"] &  &  & {}                         \\
+                                                                                              &  &  & {s_{\beta,|w|}} &  & {s_{\alpha,r+1}} \arrow[rrrd, "\varepsilon"]                                                                                       &  &  & {s_{\beta,|w|}}            \\
+                                                                                              &  &  & \vdots          &  & \vdots \arrow[rrrd, "\varepsilon", dotted]                                                                                         &  &  & \vdots                     \\
+                                                                                              &  &  &                 &  & \vdots \arrow[rrrd, "\varepsilon", dotted]                                                                                         &  &  & \vdots                     \\
+                                                                                              &  &  &                 &  & {s_{\alpha,\mathcal{B}(K)}}                                                                                                        &  &  & {s_{\beta,\mathcal{B}(K)}}
+        \end{tikzcd}
+        \caption{Les transitions ajoutées}
+        \label{ok}
+    \end{figure}
+
     \clearpage
     \printbibliography
 \end{document}

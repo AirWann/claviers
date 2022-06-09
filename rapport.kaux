@@ -17,4 +17,6 @@
 \KAuxFileAt {rapport.tex}{66}
 \KAuxScopeNewInstance {base}{base}{}
 \KAuxScopeNewInstance {document}{document}{base}
+\KAuxDeclaredScopeTag {ok}
+\KAuxNewLinkScopetagInstance {ok}{document}
 \KAuxEOF {}

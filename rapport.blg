@@ -1,17 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14
-[1] Config.pm:307> INFO - Logfile is 'rapport.blg'
-[258] biber-MSWIN32:322> INFO - === 
-[319] Biber.pm:415> INFO - Reading 'rapport.bcf'
-[771] Biber.pm:943> INFO - Found 1 citekeys in bib section 0
-[892] Biber.pm:4256> INFO - Processing section 0
-[897] Utils.pm:75> INFO - Globbing data source 'biblio.bib'
-[931] Utils.pm:91> INFO - Globbed data source 'biblio.bib' to biblio.bib
-[974] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio.bib' for section 0
-[992] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1017] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio.bib'
-[1156] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1160] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1160] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
-[1161] Biber.pm:4090> INFO - No sort tailoring available for locale 'fr-FR'
-[1174] bbl.pm:652> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
-[1178] bbl.pm:755> INFO - Output to rapport.bbl
+[0] Config.pm:307> INFO - Logfile is 'rapport.blg'
+[102] biber-MSWIN32:322> INFO - === 
+[130] Biber.pm:415> INFO - Reading 'rapport.bcf'
+[281] Biber.pm:943> INFO - Found 1 citekeys in bib section 0
+[303] Biber.pm:4256> INFO - Processing section 0
+[304] Utils.pm:75> INFO - Globbing data source 'biblio.bib'
+[317] Utils.pm:91> INFO - Globbed data source 'biblio.bib' to biblio.bib
+[336] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[341] bibtex.pm:1653> INFO - LaTeX decoding ...
+[352] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio.bib'
+[406] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[406] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[406] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[406] Biber.pm:4090> INFO - No sort tailoring available for locale 'fr-FR'
+[416] bbl.pm:652> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
+[418] bbl.pm:755> INFO - Output to rapport.bbl
