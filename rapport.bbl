@@ -19,6 +19,59 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{shortpathOCS}{article}{}
+      \name{author}{5}{}{%
+        {{hash=dfb9ed7d7d4e054ba92bffd31726a2b9}{%
+           family={Chistikov},
+           familyi={C\bibinitperiod},
+           given={Dmitry},
+           giveni={D\bibinitperiod}}}%
+        {{hash=3ffcf202737bcf5b5a5abec127f0ce9d}{%
+           family={Czerwinski},
+           familyi={C\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+        {{hash=d6adbba0fe2b05aab6c8770df6536619}{%
+           family={Hofman},
+           familyi={H\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7b06d22ab13a904b77fdd6c23092b07b}{%
+           family={Pilipczuk},
+           familyi={P\bibinitperiod},
+           given={Michal},
+           giveni={M\bibinitperiod}}}%
+        {{hash=164cdfff3faa914f8852b97950033187}{%
+           family={Wehar},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3567e0c94423ffa90d257cd42b76fb6c}
+      \strng{fullhash}{8e55a8e4fe2e93cf708df407f666ddfa}
+      \strng{bibnamehash}{3567e0c94423ffa90d257cd42b76fb6c}
+      \strng{authorbibnamehash}{3567e0c94423ffa90d257cd42b76fb6c}
+      \strng{authornamehash}{3567e0c94423ffa90d257cd42b76fb6c}
+      \strng{authorfullhash}{8e55a8e4fe2e93cf708df407f666ddfa}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Shortest paths in one-counter systems}
+      \field{volume}{abs/1510.05460}
+      \field{year}{2015}
+      \verb{eprint}
+      \verb 1510.05460
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1510.05460
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1510.05460
+      \endverb
+    \endentry
     \entry{bible}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=8fd4a1da021670e6799f9bc78e0c95ec}{%

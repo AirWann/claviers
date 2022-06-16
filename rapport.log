@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  9 JUN 2022 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  16 JUN 2022 11:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -383,16 +383,6 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \mathdisplay@stack=\toks27
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
-) (d:/Programs/texlive/2020/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
-Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
-\symrsfs=\mathgroup4
-) (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup5
-\symAMSb=\mathgroup6
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/knowledge/knowledge.sty (d:/Programs/texlive/2020/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2020-03-06 L3 programming layer (loader) 
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
@@ -911,11 +901,18 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \xmathstrut@dim=\dimen296
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (d:/Programs/texlive/2020/texmf-dist/tex/latex/tools/bm.sty
+ (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (d:/Programs/texlive/2020/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup7
-\symboldletters=\mathgroup8
-\symboldsymbols=\mathgroup9
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/newpxtext.sty
@@ -1002,8 +999,7 @@ LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
 (Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 422.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
 (Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 423.
-LaTeX Info: Redefining \mathscr on input line 455.
-\symlettersA=\mathgroup10
+\symlettersA=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
 (Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 476.
 LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 478.
@@ -1020,10 +1016,10 @@ LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> LMS/ntxsy/m/n on input line 497.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  LMS/ntxsy/m/n --> LMS/ntxsy/b/n on input line 498.
-\symAMSm=\mathgroup11
+\symAMSm=\mathgroup10
 LaTeX Font Info:    Overwriting symbol font `AMSm' in version `bold'
 (Font)                  U/ntxsym/m/n --> U/ntxsym/b/n on input line 521.
-\symsymbolsC=\mathgroup12
+\symsymbolsC=\mathgroup11
 LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
 (Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 542.
 Now handling font encoding LMX ...
@@ -1039,7 +1035,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 555.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 556.
-\symlargesymbolsTXA=\mathgroup13
+\symlargesymbolsTXA=\mathgroup12
 LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
 (Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 570.
 \tx@sbptoks=\toks49
@@ -1099,7 +1095,7 @@ Package csquotes Info: ... configuration file loaded successfully.
 File: csquotes.cfg 
 )) (d:/Programs/texlive/2020/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
-\symstmry=\mathgroup14
+\symstmry=\mathgroup13
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 ) (c:/Users/elpub/Documents/Cours/claviers/keyboard_symbols.tex)
@@ -1111,40 +1107,40 @@ Package csquotes Info: Redefining alias 'default' -> 'french'.
  (c:/Users/elpub/Documents/Cours/claviers/rapport.aux)
 \openout1 = `rapport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 66.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 66.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 68.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 68.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 66.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 66.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 68.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 68.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 66.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 66.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 68.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 68.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 66.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 66.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 68.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 68.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    ... okay on input line 68.
 Package biblatex Info: Trying to load language 'french'...
 Package biblatex Info: ... file 'french.lbx' found.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/french.lbx
@@ -1158,11 +1154,11 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'rapport.bbl' found.
  (c:/Users/elpub/Documents/Cours/claviers/rapport.bbl)
-Package biblatex Info: Reference section=0 on input line 66.
-Package biblatex Info: Reference segment=0 on input line 66.
-LaTeX Info: Redefining \degres on input line 66.
-LaTeX Info: Redefining \dots on input line 66.
-LaTeX Info: Redefining \up on input line 66.
+Package biblatex Info: Reference section=0 on input line 68.
+Package biblatex Info: Reference segment=0 on input line 68.
+LaTeX Info: Redefining \degres on input line 68.
+LaTeX Info: Redefining \dots on input line 68.
+LaTeX Info: Redefining \up on input line 68.
  (c:/Users/elpub/Documents/Cours/claviers/rapport.kaux)
 \knowledge_kaux_iow=\write5
 \openout5 = `rapport.kaux'.
@@ -1224,14 +1220,14 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ABD: EveryShipout initializing macros
 \c@mv@tabular=\count494
 \c@mv@boldtabular=\count495
-LaTeX Info: Redefining \microtypecontext on input line 66.
+LaTeX Info: Redefining \microtypecontext on input line 68.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 66.
+LaTeX Info: Redefining \showhyphens on input line 68.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1240,34 +1236,30 @@ Package microtype Info: Redefining babel's language switching commands.
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 17.28pt on input line 67.
+(Font)              scaled to size 17.28pt on input line 69.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 67.
+(Font)              scaled to size 17.28pt on input line 69.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 75.
+(Font)              scaled to size 12.0pt on input line 78.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
-(Font)              scaled to size 12.0pt on input line 75.
-LaTeX Font Info:    Trying to load font information for OT1+zpltlf on input line 75.
+(Font)              scaled to size 12.0pt on input line 78.
+LaTeX Font Info:    Trying to load font information for OT1+zpltlf on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/ot1zpltlf.fd
 File: ot1zpltlf.fd 2015/01/17 v1.0 font definition file for OT1/zpl/tlf
 )
 LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 75.
+(Font)              scaled to size 12.0pt on input line 78.
 LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 75.
+(Font)              scaled to size 8.8pt on input line 78.
 LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 75.
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 75.
- (d:/Programs/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+(Font)              scaled to size 6.6pt on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1275,82 +1267,108 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 75.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 75.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 75.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 75.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 78.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sl' will be
-(Font)              scaled to size 12.0pt on input line 75.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/sl' in size <12> not available
-(Font)              Font shape `T1/zpltlf/b/it' tried instead on input line 78.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 78.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 92.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/sl' in size <12> not available
+(Font)              Font shape `T1/zpltlf/b/it' tried instead on input line 81.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/it' will be
+(Font)              scaled to size 12.0pt on input line 81.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 101.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 11.28003pt on input line 92.
+(Font)              scaled to size 11.28003pt on input line 101.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `qhv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 8.27202pt on input line 92.
+(Font)              scaled to size 8.27202pt on input line 101.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 6.20401pt on input line 92.
+(Font)              scaled to size 6.20401pt on input line 101.
+ [1
+
+{d:/Programs/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 98.
+(Font)              scaled to size 14.4pt on input line 107.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 98.
-LaTeX Font Info:    Trying to load font information for T1+zplsups on input line 108.
+(Font)              scaled to size 14.4pt on input line 107.
+LaTeX Font Info:    Trying to load font information for T1+zplsups on input line 116.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1zplsups.fd
 File: t1zplsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
-(Font)              scaled to size 12.0pt on input line 108.
+(Font)              scaled to size 12.0pt on input line 116.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zplsups' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 108.
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 108.
- [1
-
-{d:/Programs/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(Font)              scaled to size 10.0pt on input line 116.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 112.
+(Font)              scaled to size 12.0pt on input line 120.
+ [2]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 146.
+(Font)              scaled to size 12.0pt on input line 155.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/zpltlf/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
- [2] [3]
-LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 151.
+ [3]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 164.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 164.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 164.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 164.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 164.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 10.29301pt on input line 164.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 7.52002pt on input line 164.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 5.73401pt on input line 164.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 10.95pt on input line 185.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 186.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 186.
+ [4
+
+] [5]
+LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 203.
  (d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1npxtt.fd
 File: t1npxtt.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 12.0pt on input line 151.
+(Font)              scaled to size 12.0pt on input line 203.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `npxtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 \openout5 = `rapport.diagnose'.
 
- (c:/Users/elpub/Documents/Cours/claviers/rapport.kaux) [4
+ (c:/Users/elpub/Documents/Cours/claviers/rapport.kaux) [6
 
 ] (c:/Users/elpub/Documents/Cours/claviers/rapport.aux)
 Package logreq Info: Writing requests to 'rapport.run.xml'.
@@ -1358,18 +1376,18 @@ Package logreq Info: Writing requests to 'rapport.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34436 strings out of 480608
- 703066 string characters out of 5903116
- 1345901 words of memory out of 5000000
- 49620 multiletter control sequences out of 15000+600000
- 603618 words of font info for 130 fonts, out of 8000000 for 9000
+ 34659 strings out of 480608
+ 707135 string characters out of 5903116
+ 1342993 words of memory out of 5000000
+ 49783 multiletter control sequences out of 15000+600000
+ 649695 words of font info for 213 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,17n,84p,863b,1941s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-sc.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}<d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txsys.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplbi.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (4 pages, 157029 bytes).
+{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-sc.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}<d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txexs.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txsys.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplbi.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (6 pages, 179116 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 98 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 25613 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 38925 words of extra memory for PDF output out of 42996 (max. 10000000)
 

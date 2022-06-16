@@ -7,8 +7,8 @@
 \usepackage{numprint}       % Histoire que les chiffres soient bien
 
 \usepackage{amsmath}        % La base pour les maths
-\usepackage{mathrsfs}       % Quelques symboles supplémentaires
-\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
+%\usepackage{mathrsfs}       % Quelques symboles supplémentaires
+%\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
 
 \usepackage{knowledge}
 
@@ -47,17 +47,19 @@
 }
 \hyphenpenalty 500
 
-\newcommand{\Z}{\mathbb{Z}} 
-\newcommand{\Zp}[1][p]{\Z/#1\Z} 
 \newcommand{\newlemme}[1]{\newtheorem[S]{#1}[cpt]{Lemme}}
 \newcommand{\newdef}[1]{\newtheorem[S]{#1}[cpt]{Définition}}
 \newcommand{\newthm}[1]{\newtheorem[M]{#1}[cpt]{Théorème}}
+\newcommand{\newcor}[1]{\newtheorem[S]{#1}[cpt]{Corollaire}}
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\Kinf}{||K||_{\infty}}
 \newcounter{cpt}
 
 \newdef{defétats}
 \newdef{configétats}
+\newdef{effettouche}
+\newdef{langageclavierQ}
 \newlemme{RatdansQRK}
 \newdef{utiles}
 \newlemme{inutilesbornés}
@@ -65,7 +67,8 @@
 
 \begin{document}
     \section{Claviers}
-
+    On rappelle quelques notations et définitions sur les claviers.
+    
 
 
 
@@ -84,13 +87,19 @@
     \end{defétats}
     \begin{configétats}[Configuration étatique]
         L'état dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
-
     \end{configétats}
+    \begin{effettouche}[Effet d'une touche dans un clavier à états]
+        Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En applicant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
+    \end{effettouche}
     Intuitivement, l'idée d'un clavier à états est que seules certaines touches sont applicables depuis un certain état. L'application d'une touche modifie le mot (comme pour les claviers habituels)
     et fait passer dans un autre état (comme pour un automate).
-
+    On peut donc définir le langage d'un clavier à états :
+    \begin{langageclavierQ}
+        Pour $K$ un clavier à états, on définit $\L(K)$ le \textbf{langage de $K$} comme :
+        \[ \{uv | \exists\delta_1,...,\delta_n \in \Delta, \exists s_f \in F, (u,s_f,v) = (\varepsilon,s_0,\varepsilon)\cdot\delta_1\cdots\delta_n \}\]
+    \end{langageclavierQ}
     On notera $\mathsf{Q}X$ l'ensemble des claviers à états sur des claviers de classe $X$ : $\QMK$, $\QFRK$, etc... 
-    On négligera la présence du symbole entrée, car on accepte par état final.
+    On négligera la présence du symbole entrée, car on accepte par état final (on peut en fait simuler la touche entrée en ajoutants des états, voir annexe).
     Par abus de langage, on dira d'un langage $\L$ qu'il est dans une classe pour dire qu'il est reconnu par un clavier de cette classe : 
     par exemple on dira $\L \in \QGRK$ si il existe $K \in \QGRK$ tel que $\L = \L(K)$.
 
@@ -103,8 +112,7 @@
         $\Rat \subset \QRK$
     \end{RatdansQRK}
     En effet, étant donné un automate $\A$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
-    ne font que écrire une unique lettre.
-
+    ne font que écrire une unique lettre. \smallskip \\
     Pour pouvoir montrer l'inclusion inverse, on va étudier plus précisément la structure du mot qu'on est en train d'écrire\footnote{On considère les automates comme \emph{générateurs}, qui écrivent progressivement le mot, plutôt que comme acceptateurs, qui le lisent puis acceptent ou non.}.
     
     Soit $K$ un clavier de $\QRK$. En l'absence de flèche gauche, on sait que toutes les configurations étatiques sont de la forme $(w,q,\varepsilon)$. De plus, lors d'un calcul acceptant, on peut à chaque étape diviser le mot courant $w$ en deux :
@@ -112,10 +120,11 @@
         \item un préfixe $u$ qui ne sera jamais effacé, qui est donc un préfixe du mot qu'on cherche à écrire ; on dit qu'il est \emph{utile}.
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
-    On montre alors
-    \begin{inutilesbornés}
+    On montre alors :
+    \begin{inutilesbornés}\label{bk}
         Soit $K$ un clavier à états de $\QRK$. Il existe $\mathcal{B}(K)$, ne dépendant que de $K$, telle que pout tout mot $w \in \L(K)$,
-        il existe une exécution de $K$ qui écrit $w$ et dont le suffixe inutile est de longueur majorée par $\mathcal{B}(K)$ à chaque étape.
+        il existe une exécution de $K$ qui écrit $w$ et dont le suffixe inutile est de longueur majorée par $\mathcal{B}(K)$ à chaque étape. \\
+        De plus, $\mathcal{B}(K)$ est polynomial en la taille de $K$.
     \end{inutilesbornés}
     L'idée pour construire un automate reconnaissant le même langage que $K$ est donc d'utiliser comme états $Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket$, dans lesquels on stocke dans la première composante l'état du clavier dans lequel on se trouve,
     et dans la deuxième composante la taille du suffixe inutile. Notre automate n'écrit une lettre que quand notre clavier écrit une lettre \emph{utile}.
@@ -123,19 +132,19 @@
 
     Formellement, on procède comme cela : 
     \begin{itemize}
-        \item on rajoute un état $\iota$ à notre clavier, et on rajoute, pour toute transition $(s_{init},\retour^n w,s_{\alpha})$ une transition $(\iota,w,s_{\alpha})$
-        \item on considère $\A$ dont les états sont  $( Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket ) \cup i$
+        \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$
+        \item on considère $\A$ dont les états sont  $( Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket ) \cup \iota$
         \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
             \begin{itemize}
                 \item pour tout $k$ tel que $r \leqslant k \leqslant \mathcal{B}(K) - \sharp t$, $s_{\alpha, k} \xrightarrow{\varepsilon} s_{\beta, k + \sharp t}$
                 \item pour tout $j$ tel que $0 \leqslant j \leqslant |w| - 1$, $s_{\alpha, r} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
             \end{itemize} 
-        \item pour toute transition $\iota \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j \leqslant |w|$, $i \xrightarrow{w[1,|w|-j]} s_{\beta, j}$ (avec la convention $w[1,0] = \varepsilon$)   
+        \item pour toute transition $init \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j \leqslant |w|$, $\iota \xrightarrow{w[1,|w|-j]} s_{\beta, j}$ (avec la convention $w[1,0] = \varepsilon$)   
     \end{itemize}
     \begin{figure}[!ht]
         \centering
         \begin{tikzcd}
-            i \arrow[rrr, "w"] \arrow[rrrddd, "\varepsilon"] \arrow[rrrd, "{w[1,j]}", dotted] &  &  & {s_{\beta,0}}   &  & {s_{\alpha,0}}                                                                                                                     &  &  & {s_{\beta,0}}              \\
+            \iota \arrow[rrr, "w"] \arrow[rrrddd, "\varepsilon"] \arrow[rrrd, "{w[1,j]}", dotted] &  &  & {s_{\beta,0}}   &  & {s_{\alpha,0}}                                                                                                                     &  &  & {s_{\beta,0}}              \\
                                                                                               &  &  & \vdots          &  & \vdots                                                                                                                             &  &  & \vdots                     \\
                                                                                               &  &  & \vdots          &  & {s_{\alpha,r}} \arrow[rrruu, "w", bend left] \arrow[rrru, "{w[1,|w|-1]}"] \arrow[rrr, "\dots", dotted] \arrow[rrrd, "\varepsilon"] &  &  & {}                         \\
                                                                                               &  &  & {s_{\beta,|w|}} &  & {s_{\alpha,r+1}} \arrow[rrrd, "\varepsilon"]                                                                                       &  &  & {s_{\beta,|w|}}            \\
@@ -146,6 +155,49 @@
         \caption{Les transitions ajoutées}
         \label{ok}
     \end{figure}
+    Montrons maintenant que
+    
+    
+    \clearpage
+    \appendix
+    \section{Preuves}
+    \begin{proof}[($\mathsf{QEK} = \mathsf{QK}$)]
+        On montre que la touche entrée peut être négligée pour les claviers à états.
+
+        Il suffit de créer, pour chaque état sur lequel arrive une transition finissant par $\entree$, une copie acceptante, vers laquelle on dirige cette transition (à laquelle on a enlevé $\entree$).
+        Toutes les autres transitions vers l'état original y vont toujours, seules celles avec $\entree$ vont sur la copie acceptante. \medskip \\
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,
+            scale = 1,transform shape]
+    
+            \node[state] (s_0) {$s_0$};
+            \node[state] (s_1) [left of=s_0] {$s_1$};
+            \node[state] (s_1') [right of=s_0] {$s_1$};
+            \node[state] (s_0') [right of=s_1'] {$s_0'$};
+            \node[state,accepting] (s_{0,F}) [below of=s_0'] {$s_{0,F}$};
+
+            
+            \path (s_1) edge              node {$t_1t_2\cdots t_n \entree$} (s_0)
+                    (s_1') edge              node {$t_1t_2\cdots t_n$} (s_{0,F});
+        \end{tikzpicture}
+    \end{proof}
+    \begin{proof}[du lemme \ref{bk}]
+        On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile.
+        Un calcul acceptant se décompose en \emph{pas}, séparés par l'écriture d'une ou plusieurs lettres utiles :
+        \[ \varepsilon,0,s_0 \rightsquigarrow ab,5,\_ \rightsquigarrow abc,1,\_ \rightsquigarrow \cdots \rightsquigarrow w,0,s_F \]
+        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile) car cette étape doit effacer tout le suffixe inutile avant de pouvoir écrire des lettres utiles.
+
+        Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
+        
+        Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q$ et un ensemble de transitions étiquetées par $\mathbb{Z}$ (dans notre cas, les $\sharp t$), dans lequel une configuration est un élément de $Q \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
+        Pour pouvoir appliquer \cite{shortpathOCS}, il faut modifier notre système pour que les transitions soient étiquetées par 0,1, ou -1 ; il suffit d'ajouter, pour chaque transition étiquetée par $\pm k$, $k-1$ états.
+        Finalement, le nombre d'états de notre système est 
+        \[n = |Q| + \sum_{t \in K} (\sharp t - 1) < |K|\] 
+
+        Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
+        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
+        
+        Ainsi, $\mathcal{B}(K) = 8|K|^2$ convient.
+    \end{proof}
 
     \clearpage
     \printbibliography
