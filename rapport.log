@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  21 JUN 2022 14:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.24)  21 JUN 2022 14:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1375,40 +1375,40 @@ LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
 (Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sl' will be
-(Font)              scaled to size 8.8pt on input line 133.
+(Font)              scaled to size 8.8pt on input line 134.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sl' will be
-(Font)              scaled to size 6.6pt on input line 133.
+(Font)              scaled to size 6.6pt on input line 134.
  [2] [3]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 189.
+(Font)              scaled to size 12.0pt on input line 190.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/zpltlf/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
  [4]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 206.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 206.
-LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 206.
-LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 206.
-LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 206.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 10.29301pt on input line 206.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 7.52002pt on input line 206.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 5.73401pt on input line 206.
-LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 206.
-LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 8.0pt on input line 206.
-LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 6.1pt on input line 206.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 10.95pt on input line 207.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 207.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 207.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 207.
+LaTeX Font Info:    Font shape `OT1/zpltlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 207.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 10.29301pt on input line 207.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 7.52002pt on input line 207.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 5.73401pt on input line 207.
+LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 207.
+LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
+(Font)              scaled to size 8.0pt on input line 207.
+LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
+(Font)              scaled to size 6.1pt on input line 207.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 10.95pt on input line 208.
  [5
 
 ] [6] [7]
@@ -1422,15 +1422,15 @@ Package logreq Info: Writing requests to 'rapport.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35635 strings out of 480608
- 725223 string characters out of 5903116
- 1391412 words of memory out of 5000000
+ 35633 strings out of 480608
+ 725181 string characters out of 5903116
+ 1392412 words of memory out of 5000000
  50709 multiletter control sequences out of 15000+600000
- 654209 words of font info for 234 fonts, out of 8000000 for 9000
+ 654094 words of font info for 233 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,19n,84p,863b,1941s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-sc.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{d:/Programs/texlive/2020/texmf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}<d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txexs.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newtx/txsys.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplb.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplbi.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplr.pfb><d:/Programs/texlive/2020/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (8 pages, 199268 bytes).
+Output written on c:/Users/elpub/Documents/Cours/claviers/rapport.pdf (8 pages, 198571 bytes).
 PDF statistics:
  110 PDF objects out of 1000 (max. 8388607)
  83 compressed objects within 1 object stream

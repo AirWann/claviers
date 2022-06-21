@@ -126,7 +126,8 @@
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
     \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état finale dont les touches sont ${\touche{abc},\touche{\retour^2b}}$. 
-    L'éxécution écrivant $ababc$ est : $epsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). 
+    L'éxécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). 
+    
     On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile (le contenu n'ayant aucun intérêt).
     \begin{pas}
         Un calcul acceptant se décompose en \textbf{pas}, séparés par l'écriture d'une ou plusieurs lettres utiles :
