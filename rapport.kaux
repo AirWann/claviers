@@ -14,11 +14,13 @@
 \KAuxCommand \KAuxUseKnowledge {mmm}{Package knowledge: Identifies the use of some knowledge. Arguments {namespace}{instance}{knowledge}.}
 
 
-\KAuxFileAt {rapport.tex}{68}
+\KAuxFileAt {rapport.tex}{70}
 \KAuxScopeNewInstance {base}{base}{}
 \KAuxScopeNewInstance {document}{document}{base}
 \KAuxDeclaredScopeTag {bk}
 \KAuxNewLinkScopetagInstance {bk}{document}
 \KAuxDeclaredScopeTag {ok}
 \KAuxNewLinkScopetagInstance {ok}{document}
+\KAuxDeclaredScopeTag {lklak}
+\KAuxNewLinkScopetagInstance {lklak}{document}
 \KAuxEOF {}
