@@ -77,6 +77,7 @@
 
 \newcommand{\corto}[1]{\todo[color=blue!30]{\small #1}}
 \newcommand{\cortoin}[1]{\todo[color=blue!30,inline]{\small #1}}
+\newcommand{\vincent}[1]{\textcolor{blue}{#1 -- Vincent}}
 
 \begin{document}
     \section{Claviers}
@@ -94,14 +95,14 @@
         Un clavier à état est la donnée de $(Q,T,\Delta ,F,s_0)$ où :
         \begin{itemize}
             \item $Q$ est un ensemble d'\textbf{états}
-            \item $T$ est un clavier (ensemble de touches)
+            \item $T$ est un clavier (ensemble de touches) \vincent{Je ne suis pas sûr que ce soit pertinent de mettre $T$ dans la def : c’est les transitions qui déterminent quelles touches sont présentes.}
             \item $\Delta \subset Q \times T \times Q$ est un ensemble fini de \textbf{transitions}
             \item $F$ est un ensemble d'états dits \textbf{finaux}
             \item $s_0 \in Q$ est un état dit \textbf{initial}
         \end{itemize}
     \end{defétats}
     \begin{configétats}[Configuration étatique]
-        L'état dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
+        L'état \vincent{Bof, surchargé comme mot} dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.\vincent{Je définirai plus directement par : Une configuration est un triplet $\cdots$ (si tu tiens au mot étatique, pourquoi pas, mais configuration, c’est standard comme terme pour une machine).}
     \end{configétats}
     \begin{effettouche}[Effet d'une touche dans un clavier à états]
         Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En applicant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
@@ -114,6 +115,9 @@
         Pour $K$ un clavier à états, on définit $\L(K)$ le \textbf{langage de $K$} comme :
         \[ \{uv | \exists\delta_1,...,\delta_n \in \Delta, \exists s_f \in F, (u,s_f,v) = (\varepsilon,s_0,\varepsilon)\cdot\delta_1\cdots\delta_n \}\]
     \end{langageclavierQ}
+
+    \vincent{Je sortirais les deux dernières def de blocs def, ça allègera le document (et c’est standard).}
+
     On notera $\mathsf{Q}X$ l'ensemble des claviers à états sur des claviers de classe $X$ : $\QMK$, $\QFRK$, etc... 
     On négligera la présence du symbole entrée, car on accepte par état final (on peut en fait simuler la touche entrée en ajoutants des états, voir annexe).
     Par abus de langage, on dira d'un langage $\L$ qu'il est dans une classe pour dire qu'il est reconnu par un clavier de cette classe : 
@@ -146,12 +150,14 @@
     \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
     L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
 
-    On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile (le contenu n'ayant aucun intérêt).
+    On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile (le contenu n'ayant aucun intérêt). \vincent{On abstrait, pas dénote -- ça rassemble plusieurs configurations, donc c’est pas une simple notation, sans doute à réécrire.}
     \begin{pas}
         Un calcul acceptant se décompose en \textbf{pas}, séparés par l'écriture d'une ou plusieurs lettres utiles :
         \[ \varepsilon,0,s_0 \rightsquigarrow ab,5,\_ \rightsquigarrow abc,1,\_ \rightsquigarrow \cdots \rightsquigarrow w,0,s_F \]
         au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire doit effacer tout le suffixe inutile avant de pouvoir le faire.
     \end{pas}
+
+    \vincent{Hum, je n’aime pas bien la notation $\rightsquigarrow$ qui n’est pas définie. Je suggèrerais de réécrire ça plus clairement (en partant d’une exécution et en identifiant clairement les positions dont le mot utile est différent de leur prédécesseur).}
 
 
     On montre alors :
@@ -164,6 +170,8 @@
     et dans la deuxième composante la taille du suffixe inutile. Notre automate n'écrit une lettre que quand notre clavier écrit une lettre \emph{utile}.
     
     On rappelle que toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$. On suppose que cette transformation a été effectuée et on note alors $\sharp t = |w| - r$.
+
+    \vincent{Je remplacerais par «Sans perte de généralité, on suppose donc que toutes les touches de notre clavier sont de cette forme.}
 
     Formellement, on procède comme cela :
     \begin{itemize}
@@ -180,6 +188,8 @@
         \item pour toute transition $init \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j < |w|$, $\iota \xrightarrow{w[1,|w|-j]} s_{\beta, j}$, ainsi que $\iota \xrightarrow{\varepsilon} \bar{s_{\beta, |w|}}$. 
         \item les états finaux sont les $s_{f,0}$ pour $f$ parcourant $F$.
     \end{itemize}
+
+    \vincent{Usuellement un mot commence à 0, pas à 1.}
 
 	\cortoin{Pense à expliquer que le bit supplémentaire 0/1 dans les etats de l'automate correspond à la barre sur les états}
 	
@@ -253,7 +263,7 @@
         
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
-        Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q$ et un ensemble de transitions étiquetées par $\mathbb{Z}$ (dans notre cas, les $\sharp t$), dans lequel une configuration est un élément de $Q \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
+        Il nous suffit donc de considérer que notre clavier est un système à un compteur \vincent{sans tests à 0}, c'est à dire un ensemble d'états $Q$ et un ensemble de transitions étiquetées par $\mathbb{Z}$ (dans notre cas, les $\sharp t$), dans lequel une configuration est un élément de $Q \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
         Pour pouvoir appliquer \cite{shortpathOCS}, il faut modifier notre système pour que les transitions soient étiquetées par 0,1, ou -1 ; il suffit d'ajouter, pour chaque transition étiquetée par $\pm k$, $k-1$ états.
         Finalement, le nombre d'états de notre système est 
         \[n = |Q| + \sum_{t \in K} (\sharp t - 1) < |K|\] 
