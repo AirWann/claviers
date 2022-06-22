@@ -366,6 +366,8 @@ INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Regular-tlf-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Bold-tlf-t1.tfm
+OUTPUT c:/Users/elpub/Documents/Cours/claviers/rapport.pdf
+INPUT d:/Programs/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Bold-tlf-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-BoldItalic-tlf-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/ot1zpltlf.fd
@@ -436,8 +438,6 @@ INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
-OUTPUT c:/Users/elpub/Documents/Cours/claviers/rapport.pdf
-INPUT d:/Programs/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
@@ -453,6 +453,8 @@ INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT d:/Programs/texlive/2020/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
+INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Regular-tlf-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/fonts/tfm/public/newpx/zpl-Bold-tlf-t1.tfm
 INPUT d:/Programs/texlive/2020/texmf-dist/tex/latex/newpx/t1zplsups.fd

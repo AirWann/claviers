@@ -63,29 +63,31 @@
 \newdef{configétats}
 \newdef{effettouche}
 \newdef{langageclavierQ}
+\newdef{tailleclavierQ}
 \newlemme{RatdansQRK}
 \newlemme{pas}
 \newdef{utiles}
 \newlemme{inutilesbornés}
 \newlemme{bisimautomclav}
 \newthm{QRKegalRat}
+\newcor{motQRK}
 
 \begin{document}
     \section{Claviers}
-    On rappelle quelques notations et définitions sur les claviers.
+    On rappelle quelques notations et définitions sur les claviers. [TODO]
     
-
+    \clearpage
 
 
 	\section{Claviers à états}
     Les claviers comme définis précédemment n'ont aucune mémoire, ce qui les rend incapables de stocker une quelconque information.
     Pour pallier à cela, on ajoute des états :
     \begin{defétats}[Clavier à état]
-        Un clavier à état est la donnée de $(Q,K,\Delta ,F,s_0)$ où :
+        Un clavier à état est la donnée de $(Q,T,\Delta ,F,s_0)$ où :
         \begin{itemize}
             \item $Q$ est un ensemble d'\textbf{états}
-            \item $K$ est un clavier
-            \item $\Delta \subset Q \times K \times Q$ est un ensemble fini de \textbf{transitions}
+            \item $T$ est un clavier (ensemble de touches)
+            \item $\Delta \subset Q \times T \times Q$ est un ensemble fini de \textbf{transitions}
             \item $F$ est un ensemble d'états dits \textbf{finaux}
             \item $s_0 \in Q$ est un état dit \textbf{initial}
         \end{itemize}
@@ -107,7 +109,11 @@
     On négligera la présence du symbole entrée, car on accepte par état final (on peut en fait simuler la touche entrée en ajoutants des états, voir annexe).
     Par abus de langage, on dira d'un langage $\L$ qu'il est dans une classe pour dire qu'il est reconnu par un clavier de cette classe : 
     par exemple on dira $\L \in \QGRK$ si il existe $K \in \QGRK$ tel que $\L = \L(K)$.
-
+    \begin{tailleclavierQ}[taille d'un clavier à états]
+        Soit $K$ un clavier à états. On note $|K|$, et on appelle \textbf{taille} de $K$, la quantité 
+        \[ |Q| + |T| + \sum_{t \in T} |t|\]
+        On note $\Kinf$ la quantité $\max\limits_{t \in T} |t|$.
+    \end{tailleclavierQ}
 
     \subsection{QRK = Rat}
     On sait que \autocite[théorèmes~101/102]{bible} $\RK \subset \Rat$, et que l'inclusion est stricte, comme le montre le langage $a^* + b^*$. En ajoutant des états,
@@ -117,7 +123,10 @@
         $\Rat \subset \QRK$
     \end{RatdansQRK}
     En effet, étant donné un automate $\A$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
-    ne font que écrire une unique lettre. \smallskip \\
+    ne font que écrire une unique lettre.
+    
+
+
     Pour pouvoir montrer l'inclusion inverse, on va étudier plus précisément la structure du mot qu'on est en train d'écrire\footnote{On considère les automates comme \emph{générateurs}, qui écrivent progressivement le mot, plutôt que comme acceptateurs, qui le lisent puis acceptent ou non.}.
     
     Soit $K$ un clavier de $\QRK$. En l'absence de flèche gauche, on sait que toutes les configurations étatiques sont de la forme $(w,q,\varepsilon)$. De plus, lors d'un calcul acceptant, on peut à chaque étape diviser le mot courant $w$ en deux :
@@ -125,9 +134,9 @@
         \item un préfixe $u$ qui ne sera jamais effacé, qui est donc un préfixe du mot qu'on cherche à écrire ; on dit qu'il est \emph{utile}.
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
-    \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état finale dont les touches sont ${\touche{abc},\touche{\retour^2b}}$. 
-    L'éxécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). 
-    
+    \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
+    L'éxécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
+
     On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile (le contenu n'ayant aucun intérêt).
     \begin{pas}
         Un calcul acceptant se décompose en \textbf{pas}, séparés par l'écriture d'une ou plusieurs lettres utiles :
@@ -197,7 +206,10 @@
     \begin{QRKegalRat}
         $\QRK = \Rat$
     \end{QRKegalRat}
-    
+    Et le fait que $\mathcal{B}(K)$ soit polynomial en $|K|$ nous permet d'obtenir le corollaire :
+    \begin{motQRK}
+        Le problème du mot dans $\QRK$ est résoluble en temps polynomial en la taille du clavier
+    \end{motQRK}
     
     \clearpage
 
@@ -208,7 +220,8 @@
         \emph{On montre que la touche entrée peut être négligée pour les claviers à états.} 
 
         Il suffit de créer, pour chaque état sur lequel arrive une transition finissant par $\entree$, une copie acceptante, vers laquelle on dirige cette transition (à laquelle on a enlevé $\entree$).
-        Toutes les autres transitions vers l'état original y vont toujours, seules celles avec $\entree$ vont sur la copie acceptante. \medskip \\
+        Toutes les autres transitions vers l'état original y vont toujours, seules celles avec $\entree$ vont sur la copie acceptante. \medskip
+
         \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,
             scale = 1,transform shape]
     
