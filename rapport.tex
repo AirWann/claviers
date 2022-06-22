@@ -2,6 +2,7 @@
 \usepackage{biblatex} 
 \addbibresource{biblio.bib}
 \usepackage[T1]{fontenc}    % Encodage des accents
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc} % Lui aussi
 \usepackage[french]{babel} % Pour la traduction française
 \usepackage{numprint}       % Histoire que les chiffres soient bien
@@ -16,6 +17,7 @@
 \usepackage{geometry}       % Gérer correctement la taille
 
 
+\usepackage{todonotes}
 \usepackage{graphicx} % inclusion des graphiques
 \usepackage{wrapfig}  % Dessins dans le texte.
 \usepackage{mdframed}
@@ -72,9 +74,15 @@
 \newthm{QRKegalRat}
 \newcor{motQRK}
 
+
+\newcommand{\corto}[1]{\todo[color=blue!30]{\small #1}}
+\newcommand{\cortoin}[1]{\todo[color=blue!30,inline]{\small #1}}
+
 \begin{document}
     \section{Claviers}
     On rappelle quelques notations et définitions sur les claviers. [TODO]
+    
+    \cortoin{Je vois que tu as importé knowledge. Si tu l'utilises, commence dès maintenant : c'est pratique quand tu ajoutes les def au fur et à mesure mais très pénible si tu dois tout rajouter à la fin.}
     
     \clearpage
 
@@ -98,6 +106,7 @@
     \begin{effettouche}[Effet d'une touche dans un clavier à états]
         Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En applicant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
     \end{effettouche}
+\cortoin{Introduis la notation (config etatique) $\cdot$ (transition)}
     Intuitivement, l'idée d'un clavier à états est que seules certaines touches sont applicables depuis un certain état. L'application d'une touche modifie le mot (comme pour les claviers habituels)
     et fait passer dans un autre état (comme pour un automate).
     On peut donc définir le langage d'un clavier à états :
@@ -123,7 +132,7 @@
         $\Rat \subset \QRK$
     \end{RatdansQRK}
     En effet, étant donné un automate $\A$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
-    ne font que écrire une unique lettre.
+    ne font qu'écrire une unique lettre.
     
 
 
@@ -135,7 +144,7 @@
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
     \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
-    L'éxécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
+    L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
 
     On dénote par $u,x,s$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile (le contenu n'ayant aucun intérêt).
     \begin{pas}
@@ -171,6 +180,10 @@
         \item pour toute transition $init \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j < |w|$, $\iota \xrightarrow{w[1,|w|-j]} s_{\beta, j}$, ainsi que $\iota \xrightarrow{\varepsilon} \bar{s_{\beta, |w|}}$. 
         \item les états finaux sont les $s_{f,0}$ pour $f$ parcourant $F$.
     \end{itemize}
+
+	\cortoin{Pense à expliquer que le bit supplémentaire 0/1 dans les etats de l'automate correspond à la barre sur les états}
+	
+	\cortoin{Aussi la notation pour les états est à clarifier : tel quel un état devrait être $(s_\alpha, i)$ plutôt que $s_{\alpha, i}$}
 
     Intuitivement : quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
     
@@ -249,6 +262,12 @@
         Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
         
         Ainsi, $\mathcal{B}(K) = 8|K|^2$ convient.
+        
+        \cortoin{Il y a un (petit) problème dans cette preuve : disons que tu n'as qu'un état s et trois touches $(\retour aa)$, $(aaa)$ et $(\retour\retour a)$
+        Tu peux passer de 0 lettres inutiles à 2, mais ton automate à compteur peut le faire en 1 étape tandis que ton clavier en requiert 2. Donc le nombre d'étapes requises par l'automate à compteur n'est pas toujours inférieur à celui du clavier.
+    	
+    	C'est parce que tu abstais un peu trop : il ne suffit pas que d'ajouter $\#t$ au compteur pour simuler $t = \retour^i w$, il faut soustraire i puis ajouter $|w|$, sinon tu n'est pas sûr que la touche était faisable.
+}
     \end{proof}
     \begin{proof}[du lemme \ref{lklak}]
        Soit $v \in \L(\A(K))$. Il existe une exécution écrivant $v$ :
