@@ -263,7 +263,7 @@
         
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
-        Il nous suffit donc de considérer que notre clavier est un système à un compteur \vincent{sans tests à 0}, c'est à dire un ensemble d'états $Q$ et un ensemble de transitions étiquetées par $\mathbb{Z}$ (dans notre cas, les $\sharp t$), dans lequel une configuration est un élément de $Q \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
+        Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q$ et un ensemble de transitions étiquetées par $\mathbb{Z}$ (dans notre cas, les $\sharp t$), dans lequel une configuration est un élément de $Q \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
         Pour pouvoir appliquer \cite{shortpathOCS}, il faut modifier notre système pour que les transitions soient étiquetées par 0,1, ou -1 ; il suffit d'ajouter, pour chaque transition étiquetée par $\pm k$, $k-1$ états.
         Finalement, le nombre d'états de notre système est 
         \[n = |Q| + \sum_{t \in K} (\sharp t - 1) < |K|\] 
