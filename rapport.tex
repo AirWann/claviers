@@ -61,6 +61,8 @@
 \newcounter{cpt}
 \newcounter{thm}
 
+\newdef{semopel}
+\newdef{clavier}
 \newdef{defétats}
 \newdef{configétats}
 \newdef{tailleclavierQ}
@@ -71,6 +73,8 @@
 \newlemme{bisimautomclav}
 \newthm{QRKegalRat}
 \newcor{motQRK}
+\newdef{defopsym}
+\newdef{defclavsym}
 
 
 \newcommand{\corto}[1]{\todo[color=blue!30]{\small #1}}
@@ -79,11 +83,52 @@
 \newcommand{\erwann}[1]{\textcolor{green}{Erwann : #1}}
 
 \begin{document}
+    \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
     \section{Claviers}
-    On rappelle quelques notations et définitions sur les claviers. [TODO]
+    Nous considérons $S = A \cup {\retour, \gauche, \droite}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
+    Un élément de S est une \emph{opération élémentaire}.
+    Une configuration est un élément de $A^* \times A^*$, noté $\conf{u}{v}$. Intuitivement, dans cette configuration, il y a $uv$ dans la zone de texte, avec le curseur entre les deux.
+    On peut alors définir la sémantique des opérations élémentaires :
+    \begin{semopel}
+        L'\textbf{action} $\conf{u}{v}\cdot s$ d'une opération $s$ sur une configuration $\conf{u}{v}$ est définie comme suit :
+        \begin{align*}
+            \forall a \in A&, \conf{u}{v}\cdot a = \conf{ua}{v} \\
+            \conf{\varepsilon}{v}\cdot \retour = \conf{\varepsilon}{v} &, \conf{ua}{v}\cdot \retour = \conf{u}{v} \\
+            \conf{\varepsilon}{v}\cdot \gauche = \conf{\varepsilon}{v} &, \conf{ua}{v}\cdot \gauche = \conf{u}{av} \\
+            \conf{u}{\varepsilon}\cdot \droite = \conf{u}{\varepsilon} &, \conf{u}{av}\cdot \droite = \conf{ua}{v} \\
+        \end{align*}
+        Une action n'étant pas dans la colonne de gauche est dite \emph{efficiente}, car l'opération a une réelle action.
+    \end{semopel}
+    \begin{clavier}[Touches, Claviers]
+        Une \textbf{touche} est un élément de $S^*$, donc un mot sur les opérations élémentaires. \\
+        Un \textbf{clavier} est un ensemble fini de touches.
+    \end{clavier}
+    La taille $|t|$ d'une touche est sa longueur en tant que mot. Son action est définie inductivement :
+
+    $\begin{cases}
+        \conf{u}{v}\cdot \varepsilon = \conf{u}{v} \\
+        \conf{u}{v}\cdot st = (\conf{u}{v}\cdot s) \cdot t
+    \end{cases}$
+
+    Elle est dite efficiente si elle ne contient pas d'action élémentaire non efficiente.
+
+    Pour définir le langage d'un clavier, il faut savoir quand une exécution est acceptante, grâce à un symbole "entrée", $\entree$. Elle n'apparaît qu'à la fin des touches (pas nécessairement toutes), et permet de finir la saisie.
+    Si aucune touche ne finit par le symbole entrée, le clavier est dit automatique, et \[\L(K) = \{w | w =uv, \exists t_1...t_n, \conf{\varepsilon}{\varepsilon}\cdot t_1...t_n = \conf{u}{v}\}\]
+    Sinon, dans le cas général, on définit $\L(K)$ comme \[\{w | w =uv, \exists t_1...t_n, \conf{\varepsilon}{\varepsilon}\cdot t_1...t_n = \conf{u}{v}, \mathrm{seul~} t_n \mathrm{~finit~par~\entree}\}\]
     
-    \cortoin{Je vois que tu as importé knowledge. Si tu l'utilises, commence dès maintenant : c'est pratique quand tu ajoutes les def au fur et à mesure mais très pénible si tu dois tout rajouter à la fin.}
+    La \emph{taille} d'un clavier $K$ est définie comme $\sum_{t \in K} (|t| + 1)$.
+    On note $\Kinf$ la quantité $\max\limits_{t \in K} |t|$.
     
+    Les symboles spéciaux modifient l'expressivité des claviers. On va donc définir différentes classes, qui auront différentes propriétés. On les nomme selon les caractères spéciaux autorisés :
+    \[
+    \begin{array}{ccc}
+        \MK : \{\} & \GK : \{\gauche\} & \FK :\{\gauche,\droite\} \\
+        \EK : \{\entree\} & \GEK : \{\gauche,\entree\} & \FEK :\{\gauche,\droite,\entree\} \\
+        \RK : \{\retour\} & \GRK : \{\gauche,\retour\} & \FRK :\{\gauche,\droite,\retour\} \\
+        \REK : \{\retour, \entree\} & \GREK : \{\gauche,\retour,\entree\} & \FREK :\{\gauche,\droite,\retour,\entree\} \\
+    \end{array}
+    \]
+    On dira, abusivement, qu'un langage est dans une classe s'il existe un langage de cette classe le reconnaissant. Par exemple, on dira $L \in \GRK$ s'il existe $K \in \GRK$ tel que $\L(K) = L$.
     \clearpage
 
 
@@ -100,9 +145,9 @@
         \end{itemize}
     \end{defétats}
     \begin{configétats}[Configuration étatique]
-        L'état \vincent{Bof, surchargé comme mot} dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.\vincent{Je définirai plus directement par : Une configuration est un triplet $\cdots$ (si tu tiens au mot étatique, pourquoi pas, mais configuration, c’est standard comme terme pour une machine).}
+        L'état dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
     \end{configétats}
-    \erwann{on en a parlé irl, mais j'ai oublié ce qu'on avait dit... (désolé). Moi c'était formulé comme ça dans mon sujet de stage, et c'est vrai que configuration tout court, c'est pour les claviers sans états...}
+    
     Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En applicant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
     On note cette opération $(u,q,v) \cdot (q,t,q') = (u',q',v')$.
 
@@ -120,7 +165,6 @@
     \begin{tailleclavierQ}[taille d'un clavier à états]
         Soit $K$ un clavier à états. On note $|K|$, et on appelle \textbf{taille} de $K$, la quantité 
         \[ |Q| + |T| + \sum_{t \in T} |t|\]
-        On note $\Kinf$ la quantité $\max\limits_{t \in T} |t|$.
     \end{tailleclavierQ}
 
     \subsection{QRK = Rat}
@@ -224,6 +268,21 @@
     \clearpage
 
 
+    \section{Claviers symétriques}
+    Un autre reproche qu'on peut faire aux claviers précédents est leur \emph{assymétrie} : même quand on peut se déplacer, on ne peut écrire et effacer qu'à gauche du curseur.
+    On définit donc des opérations palliant à cela.
+    \begin{defopsym}[Opérations symétriques]
+        Pour toute lettre $a \in A$, on définit les opérations d'écriture à gauche et à droite, $\egauche{a}$ et $\edroite{a}$, ainsi que l'effacement droit, noté $\suppr$.
+        On définit leur sémantique :
+        \begin{align*}
+            \conf{u}{v} \cdot \egauche{a} &= \conf{ua}{v}   \\
+            \conf{u}{v} \cdot \edroite{a} &= \conf{u}{av}   \\
+            \conf{u}{av} \cdot \suppr &= \conf{u}{v}        \\
+            \conf{u}{\varepsilon} \cdot \suppr &= \conf{u}{\varepsilon}
+        \end{align*}
+    \end{defopsym}
+
+    \clearpage
     \appendix
     \section{Preuves}
     \begin{proof}[($\mathsf{QEK} = \mathsf{QK}$)]
