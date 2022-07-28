@@ -16,7 +16,7 @@
 \usepackage[svgnames]{xcolor} % De la couleur
 \usepackage{geometry}       % Gérer correctement la taille
 
-
+\setlength{\marginparwidth}{2cm}
 \usepackage{todonotes}
 \usepackage{graphicx} % inclusion des graphiques
 \usepackage{wrapfig}  % Dessins dans le texte.
@@ -186,17 +186,11 @@
         \item un préfixe $u$ qui ne sera jamais effacé, qui est donc un préfixe du mot qu'on cherche à écrire ; on dit qu'il est \emph{utile}.
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
-    \textbf{Remarque :} Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
+    \begin{example}[Remarque]
+        Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
     L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
-
-    On abstrait par $\langle u,x,s \rangle$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile\footnote{Cette notation rassemble donc plusieurs configurations ! L'intérêt est que le contenu du suffixe inutile ne change rien, seulement sa taille importe.}. 
-    \vincent{On abstrait, pas dénote -- ça rassemble plusieurs configurations, donc c’est pas une simple notation, sans doute à réécrire.}
-    \begin{pas}
-        Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe inutile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
-        \[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
-        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.
-    \end{pas}
-    \erwann{j'ai essayé une nouvelle formulation, un peu plus lourde mais un peu plus précise aussi}
+    \end{example}
+    
 
     On montre alors :
     \begin{inutilesbornés}\label{bk}
@@ -210,7 +204,6 @@
     On rappelle que toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$. Sans perte de généralité, on suppose donc que toutes les touches de notre clavier sont de cette forme, et on note alors $\sharp t = |w| - r$.
 
     Formellement, on procède comme cela :
-    \erwann{l'état initial rajouté n'a plus aucune utilité, car il est en fait exactement $\overline{s_{0,0}}$}
     \begin{itemize}
         % inutile grâce à s_0,0BARRE \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$ (\emph{pré-traitement initial})
         \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $s_\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$
@@ -225,21 +218,7 @@
         %\item pour toute transition $init \xrightarrow{w} s_{\beta}$ du clavier, on ajoute, pour tout $j$ tel que $0 \leqslant j < |w|$, $\iota \xrightarrow{w[1,|w|-j]} s_{\beta, j}$, ainsi que $\iota \xrightarrow{\varepsilon} \bar{s_{\beta, |w|}}$. 
         \item l'état initial est $\overline{s_{0,0}}$, les états finaux sont les $s_{f,0}$ pour $f$ parcourant $F$.
     \end{itemize}
-
-    \vincent{Usuellement un mot commence à 0, pas à 1.}
-    \erwann{c'est grave grave ? parce que considérer que les mots commencent à 1 m'évite pas mal de +1,-1, dans les indices un peu partout}
-    Intuitivement : quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
-    
-    Justifions rapidement pourquoi notre ensemble de transitions est correct :
-    \begin{enumerate}
-        \item Ces transitions ne font que modifier la taille du suffixe inutile. La contrainte $k \geqslant r$ pour appliquer $\retour^r w$ nous garantit qu'on efface pas de lettre utile (les autres conditions garantissent que les états considérés existent).
-        \item Ces transitions écrivent des lettres utiles. Pour utiliser $\retour^r w$, il faut que la taille du suffixe inutile soit $r$. Ensuite, on écrit $w$, en disant qu'on écrit $|w|-j$ lettres utiles et $j$ inutiles.
-        \item Ces transitions modifient le nombre de lettres inutiles : $\retour^r w$ efface les $k$ lettres inutiles qu'on avait, et essaie d'effacer plus (mais au bout d'un moment il n'y a plus de lettres à effacer), puis écrit $|w|$ lettres inutiles.
-        \item Similaire au cas 1.
-        \item Similaire au cas 2. et 3.
-    \end{enumerate}
-    Remarquons qu'il n'existe aucune transition d'un état $s_{\alpha, k}$ vers un état $\bar{s_{\beta, k'}}$.
-    \begin{figure}[!ht]
+    \begin{figure}[!h]
         \centering
         \begin{tikzcd}
             {s_{\alpha,0}}                                                                                                                                     &  &  & {s_{\beta,0}}              &  & {\overline{s_{\alpha,0}}} \arrow[rrrd, "\varepsilon", dashed]                                                                      &  &  & \vdots                       \\
@@ -253,6 +232,19 @@
         \caption{Les transitions ajoutées}
         \label{ok}
     \end{figure}
+    \begin{example}[Intuition]    
+    Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
+    \end{example}
+    Justifions rapidement pourquoi notre ensemble de transitions est correct :
+    \begin{enumerate}
+        \item Ces transitions ne font que modifier la taille du suffixe inutile. La contrainte $k \geqslant r$ pour appliquer $\retour^r w$ nous garantit qu'on efface pas de lettre utile (les autres conditions garantissent que les états considérés existent).
+        \item Ces transitions écrivent des lettres utiles. Pour utiliser $\retour^r w$, il faut que la taille du suffixe inutile soit $r$. Ensuite, on écrit $w$, en disant qu'on écrit $|w|-j$ lettres utiles et $j$ inutiles.
+        \item Ces transitions modifient le nombre de lettres inutiles : $\retour^r w$ efface les $k$ lettres inutiles qu'on avait, et essaie d'effacer plus (mais au bout d'un moment il n'y a plus de lettres à effacer), puis écrit $|w|$ lettres inutiles.
+        \item Similaire au cas 1.
+        \item Similaire au cas 2. et 3.
+    \end{enumerate}
+    Remarquons qu'il n'existe aucune transition d'un état $s_{\alpha, k}$ vers un état $\bar{s_{\beta, k'}}$.
+
     \begin{bisimautomclav}\label{lklak}
         Soit $K$ un clavier de $\QRK$. Alors $\L(K) = \L(\A(K))$.
     \end{bisimautomclav}
@@ -261,11 +253,16 @@
         $\QRK = \Rat$
     \end{QRKegalRat}
     Et le fait que $\mathcal{B}(K)$ soit polynomial en $|K|$ nous permet d'obtenir le corollaire :
-    \begin{motQRK}
+    \begin{motQRK}\label{th1}
         Le problème du mot dans $\QRK$ est résoluble en temps polynomial en la taille du clavier.
-    \end{motQRK}
-    
-    \clearpage
+    \end{motQRK} 
+    \newpage
+    \begin{thmbox}[L]{\textbf{\emph{Autre point de vue}}}
+        Nous sommes partis des claviers de $\RK$, donc des machines qui écrivent et effacent, et nous leurs avons rajouté des états.
+        En prenant le point de vue opposé, le théorème 1 peut se formuler comme ceci : \\
+        \emph{Les automates pouvant effacer des lettres ont exactement la même expressivité que les automates habituels.}
+    \end{thmbox}
+    \newpage
 
 
     \section{Claviers symétriques}
@@ -281,7 +278,35 @@
             \conf{u}{\varepsilon} \cdot \suppr &= \conf{u}{\varepsilon}
         \end{align*}
     \end{defopsym}
+    On notera $\mathsf{B}X$ l'ensemble des claviers symétriques dont les transitions sont toutes de classe $X$ (à gauche ou à droite). On s'intéressera principalement à $\BK$ et $\BRK$.
+    \subsection{Propriétés d'inclusion et de stabilité}
+    Voilà quelques résultats sur les claviers symétriques.
 
+    \begin{tabular}{|p{0.5\textwidth}|p{0.4\textwidth}|}
+        \hline
+        \textbf{Propriété} & \textbf{Exemple/Contre-exemple/Remarque} \\
+        \hline
+        $\BK \not\subset \Rat$ & $a^nb^n = \L({\egauche{a}\edroite{b}}) \in \BK$ \\
+        \hline
+        $\Rat \not\subset \BK$ & $a^*+b^* \notin \BK$ \\
+        \hline
+        $\BK$ n'est pas stable par union & \textit{idem} \\
+        \hline
+        $\BK$ et $\BRK$ sont stables par miroir & $\RK$ ne l'était pas, mais $\MK$ l'était \\
+        \hline
+        $\BK$ est exactement l'ensemble des langages générés par des grammaires linéaires à un seul terminal & à chaque touche $\egauche{w_g}\edroite{w_d}$ on associe la production $A \rightarrow w_gAw_d$ \\
+        \hline
+        $\mathsf{Lin} \subset \mathsf{QBK}$ & \\
+        \hline
+        $\BRK \not\subset \GRK$ & $(a^2)^*(b+b^2)$ \\
+        \hline
+    \end{tabular}
+    Ce dernier langage nous permet aussi d'affirmer que les deux effacements sont nécessaires pour capturer toute l'expressivité de $\BRK$ ; il ne se trouve pas dans la classe sans effacement droit, et son miroir ne se trouve pas dans la classe sans effacement gauche.
+
+    En effet, autant on peut simuler $\edroite{a}$ par $\touche{a}\gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
+         
+    \subsection{Conjectures}
+    
     \clearpage
     \appendix
     \section{Preuves}
@@ -306,7 +331,14 @@
         \end{tikzpicture}
     \end{proof}
     \begin{proof}[du lemme \ref{bk}]
+        On abstrait par $\langle u,x,s \rangle$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile\footnote{Cette notation rassemble donc plusieurs configurations ! L'intérêt est que le contenu du suffixe inutile ne change rien, seulement sa taille importe.}.
         
+        On remarque un petit lemme : 
+    \begin{pas}
+        Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe inutile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
+        \[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
+        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.
+    \end{pas}
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
         Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q'$ et un ensemble de transitions étiquetées par 0,1, ou -1, dans lequel une configuration est un élément de $Q' \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.

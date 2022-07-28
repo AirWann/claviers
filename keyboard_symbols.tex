@@ -4,8 +4,8 @@
 \newcommand*{\entree}{\mathord{\blacksquare}}
 
 \newcommand*{\suppr}{\mathord{\rightarrow}}
-\let\egauche\overleftarrow
-\let\edroite\overrightarrow
+\newcommand{\egauche}[1]{\overleftarrow{\mathtt{#1}}}
+\newcommand{\edroite}[1]{\overrightarrow{\mathtt{#1}}}
 
 
 \newcommand*{\Clav}{\ensuremath{\mathsf{Clav}}}
@@ -37,7 +37,8 @@
 \newcommand*{\QGRK}{\ensuremath{\mathsf{QGRK}}}
 \newcommand*{\QFRK}{\ensuremath{\mathsf{QFRK}}}
 
-
+\newcommand*{\BK}{\ensuremath{\mathsf{BK}}}
+\newcommand*{\BRK}{\ensuremath{\mathsf{BRK}}}
 
 \let\touche\mathtt
 \let\key\touche
