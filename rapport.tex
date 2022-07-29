@@ -296,17 +296,25 @@
         \hline
         $\BK$ est exactement l'ensemble des langages générés par des grammaires linéaires à un seul terminal & à chaque touche $\egauche{w_g}\edroite{w_d}$ on associe la production $A \rightarrow w_gAw_d$ \\
         \hline
-        $\mathsf{Lin} \subset \mathsf{QBK}$ & \\
+        $\mathsf{Lin} \subset \mathsf{QBK}$ & On crée un clavier à états avec un état par terminal, ainsi qu'un état final ajouté, et on transforme $A \rightarrow \alpha B \beta | \gamma$ en une touche $\overleftarrow{\alpha}\overrightarrow{\beta}$ de $s_A$ vers $s_B$, et une touche $\overleftarrow{\gamma}$ vers l'état final \\
+        \hline
+        La vacuité de l'intersection de deux langages de $\BRK$ est indécidable & \textit{cf.} annexe \\
         \hline
         $\BRK \not\subset \GRK$ & $(a^2)^*(b+b^2)$ \\
         \hline
     \end{tabular}
+
+    
     Ce dernier langage nous permet aussi d'affirmer que les deux effacements sont nécessaires pour capturer toute l'expressivité de $\BRK$ ; il ne se trouve pas dans la classe sans effacement droit, et son miroir ne se trouve pas dans la classe sans effacement gauche.
 
     En effet, autant on peut simuler $\edroite{a}$ par $\touche{a}\gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
          
     \subsection{Conjectures}
-    
+    Les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$). Cela nous amène à conjecturer :
+    \begin{example}[Conjecture 1]
+        $\BRK \subset \Alg$
+    \end{example}
+    En effet, l'indécidabilité du caractére vide ou non de l'intersection de deux langages de $\BRK$ nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     \clearpage
     \appendix
     \section{Preuves}
@@ -334,11 +342,12 @@
         On abstrait par $\langle u,x,s \rangle$ les configurations de la forme $(w,s,\varepsilon)$ où $w = uv$ avec $|v| = x$ la taille du suffixe inutile\footnote{Cette notation rassemble donc plusieurs configurations ! L'intérêt est que le contenu du suffixe inutile ne change rien, seulement sa taille importe.}.
         
         On remarque un petit lemme : 
-    \begin{pas}
+    \textit{
         Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe inutile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
         \[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
         au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.
-    \end{pas}
+    }
+
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
         Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q'$ et un ensemble de transitions étiquetées par 0,1, ou -1, dans lequel une configuration est un élément de $Q' \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
@@ -353,7 +362,7 @@
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
         Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
         
-        Ainsi, $\mathcal{B}(K) = 8|K|^2$ convient.
+        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient.
        
     \end{proof}
     \begin{proof}[du lemme \ref{lklak}]
