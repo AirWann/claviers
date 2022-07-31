@@ -83,6 +83,18 @@
 \newcommand{\erwann}[1]{\textcolor{green}{Erwann : #1}}
 
 \begin{document}
+    Ce stage suit un article de 2021, \cite{bible}, introduisant un nouveau modèle de calcul,
+    baptisé claviers. L’un des résultats de celui-ci est que le langage de tout clavier
+    utilisant seulement l’écriture de lettres et l’effacement à gauche est rationnel. On fait évoluer le modèle pour voir si on peut changer l'expressivité (avoir tous les rationnels, avoir les algébriques).
+    
+    Le stage se divise en deux parties, qui correspondent à deux extensions du modèle des claviers, chacun palliant un manque du modèle "de base"
+    \begin{itemize}
+        \item les claviers à états, visant à pallier au manque de \emph{mémoire}
+        \item les claviers symétriques, palliant au manque de \emph{symétrie}.
+    \end{itemize}
+    Chacun de ces modèles a occupé environ la moitié du stage\footnote{Le sujet annoncé était plus centré sur les claviers symétriques, mais l'étude des claviers à états a finalement pris une part importante.}. 
+    La question principale des claviers à états est résolue (voir section \ref{sectionclavetats}), mais celle des claviers symétriques reste une conjecture (voir section \ref{sectionclavsym})
+    \clearpage    
     \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
     \section{Claviers}
     Nous considérons $S = A \cup {\retour, \gauche, \droite}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
@@ -167,7 +179,7 @@
         \[ |Q| + |T| + \sum_{t \in T} |t|\]
     \end{tailleclavierQ}
 
-    \subsection{QRK = Rat}
+    \subsection{QRK = Rat}\label{sectionclavetats}
     On sait que \autocite[théorèmes~101/102]{bible} $\RK \subset \Rat$, et que l'inclusion est stricte, comme le montre le langage $a^* + b^*$. En ajoutant des états,
     $\QRK$ est donc un bon candidat pour être égal à $\Rat$ ; on prouve cette égalité dans cette section.
     
@@ -309,12 +321,16 @@
 
     En effet, autant on peut simuler $\edroite{a}$ par $\touche{a}\gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
          
-    \subsection{Conjectures}
+    \subsection{Conjectures}\label{sectionclavsym}
     Les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$). Cela nous amène à conjecturer :
     \begin{example}[Conjecture 1]
         $\BRK \subset \Alg$
     \end{example}
     En effet, l'indécidabilité du caractére vide ou non de l'intersection de deux langages de $\BRK$ nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
+    
+    Cependant, même si on peut définir une notion de lettres intutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité (lemme \ref{bk}) ne peut fonctionner.
+    Par exemple, étant donné le clavier ${\egauche{a}\suppr,\retour\egauche{b}}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
+    
     \clearpage
     \appendix
     \section{Preuves}
