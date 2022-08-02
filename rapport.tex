@@ -140,7 +140,7 @@
         \REK : \{\retour, \entree\} & \GREK : \{\gauche,\retour,\entree\} & \FREK :\{\gauche,\droite,\retour,\entree\} \\
     \end{array}
     \]
-    On dira, abusivement, qu'un langage est dans une classe s'il existe un langage de cette classe le reconnaissant. Par exemple, on dira $L \in \GRK$ s'il existe $K \in \GRK$ tel que $\L(K) = L$.
+    On dira, abusivement, qu'un langage est dans une classe s'il existe un clavier de cette classe le reconnaissant. Par exemple, on dira $L \in \GRK$ s'il existe $K \in \GRK$ tel que $\L(K) = L$.
     \clearpage
 
 
@@ -157,7 +157,7 @@
         \end{itemize}
     \end{defétats}
     \begin{configétats}[Configuration étatique]
-        L'état dans lequel se trouve un clavier à états durant son calcul peut être décrit par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
+        La configuration dans laquelle se trouve un clavier à états à un moment de son calcul peut être décrite par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
     \end{configétats}
     
     Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En applicant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
@@ -180,14 +180,14 @@
     \end{tailleclavierQ}
 
     \subsection{QRK = Rat}\label{sectionclavetats}
-    On sait que \autocite[théorèmes~101/102]{bible} $\RK \subset \Rat$, et que l'inclusion est stricte, comme le montre le langage $a^* + b^*$. En ajoutant des états,
+    On sait que $\RK \subset \Rat$ \autocite[théorèmes~101/102]{bible}, et que l'inclusion est stricte, comme le montre le langage $a^* + b^*$. En ajoutant des états,
     $\QRK$ est donc un bon candidat pour être égal à $\Rat$ ; on prouve cette égalité dans cette section.
     
     \begin{RatdansQRK}
         $\Rat \subset \QRK$
     \end{RatdansQRK}
     En effet, étant donné un automate $\A$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
-    ne font qu'écrire une unique lettre.
+    ne font qu'écrire une seule lettre.
     
 
 
@@ -200,7 +200,7 @@
     \end{itemize}
     \begin{example}[Remarque]
         Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
-    L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième état n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
+    L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième mot n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
     \end{example}
     
 
@@ -211,11 +211,11 @@
         De plus, $\mathcal{B}(K)$ est polynomial en la taille de $K$.
     \end{inutilesbornés}
     L'idée pour construire un automate reconnaissant le même langage que $K$ est donc d'utiliser comme états $Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket$, dans lesquels on stocke dans la première composante l'état du clavier dans lequel on se trouve,
-    et dans la deuxième composante la taille du suffixe inutile. Notre automate n'écrit une lettre que quand notre clavier écrit une lettre \emph{utile}.
+    et dans la deuxième composante la taille du suffixe inutile. Notre automate ne lit une lettre que quand notre clavier écrit une lettre \emph{utile}.
     
     On rappelle que toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$. Sans perte de généralité, on suppose donc que toutes les touches de notre clavier sont de cette forme, et on note alors $\sharp t = |w| - r$.
 
-    Formellement, on procède comme cela :
+    Formellement, on procède comme cela : \corto{Précise qu'on s'autorise ici à mettre des mots de plusieurs lettres sur les transitions de l'automate.}
     \begin{itemize}
         % inutile grâce à s_0,0BARRE \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$ (\emph{pré-traitement initial})
         \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $s_\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$
@@ -249,11 +249,11 @@
     \end{example}
     Justifions rapidement pourquoi notre ensemble de transitions est correct :
     \begin{enumerate}
-        \item Ces transitions ne font que modifier la taille du suffixe inutile. La contrainte $k \geqslant r$ pour appliquer $\retour^r w$ nous garantit qu'on efface pas de lettre utile (les autres conditions garantissent que les états considérés existent).
+        \item Ces transitions ne font que modifier la taille du suffixe inutile. La contrainte $k \geqslant r$ pour appliquer $\retour^r w$ nous garantit qu'on n'efface pas de lettre utile (les autres conditions garantissent que les états considérés existent).
         \item Ces transitions écrivent des lettres utiles. Pour utiliser $\retour^r w$, il faut que la taille du suffixe inutile soit $r$. Ensuite, on écrit $w$, en disant qu'on écrit $|w|-j$ lettres utiles et $j$ inutiles.
         \item Ces transitions modifient le nombre de lettres inutiles : $\retour^r w$ efface les $k$ lettres inutiles qu'on avait, et essaie d'effacer plus (mais au bout d'un moment il n'y a plus de lettres à effacer), puis écrit $|w|$ lettres inutiles.
         \item Similaire au cas 1.
-        \item Similaire au cas 2. et 3.
+        \item Similaire aux cas 2. et 3.
     \end{enumerate}
     Remarquons qu'il n'existe aucune transition d'un état $s_{\alpha, k}$ vers un état $\bar{s_{\beta, k'}}$.
 
@@ -328,7 +328,7 @@
     \end{example}
     En effet, l'indécidabilité du caractére vide ou non de l'intersection de deux langages de $\BRK$ nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
-    Cependant, même si on peut définir une notion de lettres intutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité (lemme \ref{bk}) ne peut fonctionner.
+    Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité (lemme \ref{bk}) ne peut fonctionner.
     Par exemple, étant donné le clavier ${\egauche{a}\suppr,\retour\egauche{b}}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     
     \clearpage
@@ -359,9 +359,9 @@
         
         On remarque un petit lemme : 
     \textit{
-        Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe inutile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
+        Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première \corto{Si la transition utile fait partie du pas alors la définition de pas est incorrecte.}, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
         \[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
-        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.
+        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire. \corto{Il manque encore la phase du début où on n'écrit pas de lettres utiles et où les effets de bord apparaissent}
     }
 
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
@@ -376,9 +376,9 @@
         \[n = |Q| + \sum_{t \in K} (|t| - 1) < |K|\] 
 
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
-        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
+        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées\corto{sur la taille maximale nécessaire du compteur pour atteindre un certain état}. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
         
-        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient.
+        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient \corto{Précise d'où vient le 9}.
        
     \end{proof}
     \begin{proof}[du lemme \ref{lklak}]
@@ -387,13 +387,13 @@
        par construction, on peut faire correspondre à chaque transition un appui sur une touche (non unique) :
        \begin{enumerate}
         \item si c'est une $\varepsilon$-transition entre $s_{s_i, n_i}$ et $s_{s_{i+1},n_{i+1}}$, alors il existe (dans $K$) $s_i \xrightarrow{\retour^{k}w} s_{i+1}$ avec $k \leqslant n_i$ et $|w| - r = n_{i+1} - n_i$
-        \item si elle écrit $j$ lettres de $v$ entre $s_{s_i,n_i}$ et $s_{s_{i+1},n_{i+1}}$, c'est qu'il existe $s_i \xrightarrow{\retour^{n_i}w} s_{i+1}$ avec $|w| = j + n_{i+1}$.
+        \item si elle lit $j$ lettres de $v$ entre $s_{s_i,n_i}$ et $s_{s_{i+1},n_{i+1}}$, c'est qu'il existe $s_i \xrightarrow{\retour^{n_i}w} s_{i+1}$ avec $|w| = j + n_{i+1}$.
         \item si c'est une $\varepsilon$-transition entre $\bar{s_{s_i, n_i}}$ et $\bar{s_{s_{i+1},n_{i+1}}}$, alors il existe $s_i \xrightarrow{\retour^{k}w} s_{i+1}$ avec ou bien
             \begin{itemize}
                 \item $k \geqslant n_i$ et $|w| = n_{i+1}$, ou
                 \item $k < n_i$ et $|w| - r = n_{i+1} - n_i$
             \end{itemize}
-        \item si elle écrit $j$ lettres de $v$ entre $\bar{s_{s_i,n_i}}$ et $s_{s_{i+1},n_{i+1}}$, c'est qu'il existe $s_i \xrightarrow{\retour^{k}w} s_{i+1}$ avec $k \geqslant n_i$ et $|w| = j + n_{i+1}$
+        \item si elle lit $j$ lettres de $v$ entre $\bar{s_{s_i,n_i}}$ et $s_{s_{i+1},n_{i+1}}$, c'est qu'il existe $s_i \xrightarrow{\retour^{k}w} s_{i+1}$ avec $k \geqslant n_i$ et $|w| = j + n_{i+1}$
         %\item si c'est une $\varepsilon$-transition partant de $\iota$, elle arrive dans un certain $\bar{s_{s_1,n_1}}$, et c'est qu'il existait $init \xrightarrow{w} s_1$ avec $|w| = n_1$ après pré-traitement initial, donc qu'il existait $s_0 \xrightarrow{\retour^kw} s_1$ dans $K$.
         %\item si elle écrit $j$ lettres de $v$ entre $\iota$ et $s_{s_{1},n_{1}}$, c'est qu'il existait $init \xrightarrow{w} s_{1}$ avec $|w| = j + n_{1}$. après pré-traitement initial, donc qu'il existait $s_0 \xrightarrow{\retour^kw} s_1$ dans $K$.
        \end{enumerate}
@@ -401,8 +401,8 @@
 
        Dans tous les cas, on assure (par construction) que :
        \begin{itemize}
-        \item quand l'automate écrit des lettres, la touche correspondante écrit les mêmes lettres, et elles sont utiles (elle peut écrire des lettres inutiles en plus)
-        \item on n'appuie jamais sur une touche qui effaçerait des lettres utiles 
+        \item quand l'automate lit des lettres, la touche correspondante écrit les mêmes lettres, et elles sont utiles (elle peut écrire des lettres inutiles en plus)
+        \item on n'appuie jamais sur une touche qui effacerait des lettres utiles 
         \item quand pendant le calcul dans $\A(K)$ on est en $s_{s_i,k}$ avec $u$ déjà écrit, le calcul simulé de $K$ est en $\langle u,k,s_i\rangle$
         \item notre première transition part de $\overline{s_{0,0}}$, donc correspond bien à une touche partant de $s_0$ 
         \item notre exécution se termine dans un état final \textit{i.e.} de la forme $s_{f,0}, f \in F$
