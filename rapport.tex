@@ -11,7 +11,6 @@
 %\usepackage{mathrsfs}       % Quelques symboles supplémentaires
 %\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
 
-\usepackage{knowledge}
 
 \usepackage[svgnames]{xcolor} % De la couleur
 \usepackage{geometry}       % Gérer correctement la taille
@@ -82,10 +81,15 @@
 \newcommand{\vincent}[1]{\textcolor{blue}{#1 -- Vincent}}
 \newcommand{\erwann}[1]{\textcolor{green}{Erwann : #1}}
 
+\title{Claviers symétriques et à états}
+\author{Erwann LOULERGUE, \\ supervisé par Vincent PENELLE et Corto MASCLE}
+\date{Juin \& Juillet 2022}
 \begin{document}
+    \maketitle
     Ce stage suit un article de 2021, \cite{bible}, introduisant un nouveau modèle de calcul,
     baptisé claviers. L’un des résultats de celui-ci est que le langage de tout clavier
-    utilisant seulement l’écriture de lettres et l’effacement à gauche est rationnel. On fait évoluer le modèle pour voir si on peut changer l'expressivité (avoir tous les rationnels, avoir les algébriques).
+    utilisant seulement l’écriture de lettres et l’effacement à gauche est rationnel. 
+    On fait évoluer le modèle pour voir si on peut changer l'expressivité (avoir tous les langages rationnels, avoir les langages algébriques).
     
     Le stage se divise en deux parties, qui correspondent à deux extensions du modèle des claviers, chacun palliant un manque du modèle "de base"
     \begin{itemize}
@@ -95,6 +99,8 @@
     Chacun de ces modèles a occupé environ la moitié du stage\footnote{Le sujet annoncé était plus centré sur les claviers symétriques, mais l'étude des claviers à états a finalement pris une part importante.}. 
     La question principale des claviers à états est résolue (voir section \ref{sectionclavetats}), mais celle des claviers symétriques reste une conjecture (voir section \ref{sectionclavsym})
     \clearpage    
+    
+    
     \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
     \section{Claviers}
     Nous considérons $S = A \cup \{\retour, \gauche, \droite\}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
@@ -122,7 +128,7 @@
         \conf{u}{v}\cdot st = (\conf{u}{v}\cdot s) \cdot t
     \end{cases}$
 
-    Elle est dite efficiente si elle ne contient pas d'action élémentaire non efficiente.
+    Elle est dite efficiente si elle ne contient pas d'action élémentaire non efficiente\footnote{Cela dépend donc du contexte. Une touche donnée n'est pas efficiente ou non efficiente, mais une \emph{action} l'est.}.
 
     Pour définir le langage d'un clavier, il faut savoir quand une exécution est acceptante, grâce à un symbole "entrée", $\entree$. Elle n'apparaît qu'à la fin des touches (pas nécessairement toutes), et permet de finir la saisie.
     Si aucune touche ne finit par le symbole entrée, le clavier est dit automatique, et \[\L(K) = \{w | w =uv, \exists t_1...t_n, \conf{\varepsilon}{\varepsilon}\cdot t_1...t_n = \conf{u}{v}\}\]
