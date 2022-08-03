@@ -97,7 +97,7 @@
     \clearpage    
     \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
     \section{Claviers}
-    Nous considérons $S = A \cup {\retour, \gauche, \droite}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
+    Nous considérons $S = A \cup \{\retour, \gauche, \droite\}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
     Un élément de S est une \emph{opération élémentaire}.
     Une configuration est un élément de $A^* \times A^*$, noté $\conf{u}{v}$. Intuitivement, dans cette configuration, il y a $uv$ dans la zone de texte, avec le curseur entre les deux.
     On peut alors définir la sémantique des opérations élémentaires :
@@ -199,7 +199,7 @@
         \item un suffixe $x$ qui sera effacé par les opérations à suivre ; on dit qu'il est \emph{inutile}.
     \end{itemize}
     \begin{example}[Remarque]
-        Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple l'automate à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
+        Attention : une lettre peut être placée au bon endroit, et ne pas être utile pour autant. Considérons par exemple le clavier à un seul état dont les touches sont $\touche{abc},\touche{\retour^2b}$. 
     L'exécution écrivant $ababc$ est : $\varepsilon \rightarrow abc \rightarrow ab \rightarrow ababc$, mais le $b$ du deuxième mot n'est \emph{pas} utile, car il est effacé à l'étape suivante (même s'il est remplacé par un autre $b$). \smallskip
     \end{example}
     
@@ -215,8 +215,8 @@
     
     On rappelle que toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$. Sans perte de généralité, on suppose donc que toutes les touches de notre clavier sont de cette forme, et on note alors $\sharp t = |w| - r$.
 
-    Formellement, on procède comme cela : \corto{Précise qu'on s'autorise ici à mettre des mots de plusieurs lettres sur les transitions de l'automate.}
-    \begin{itemize}
+    Formellement, on procède comme cela\footnote{on s'autorise à avoir des transitions dans l'automate étiquetées par des mots. Il n'est pas difficile d'en extraire un automate étiqueté par des lettres.} :
+        \begin{itemize}
         % inutile grâce à s_0,0BARRE \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$ (\emph{pré-traitement initial})
         \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $s_\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$
         \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
@@ -326,10 +326,10 @@
     \begin{example}[Conjecture 1]
         $\BRK \subset \Alg$
     \end{example}
-    En effet, l'indécidabilité du caractére vide ou non de l'intersection de deux langages de $\BRK$ nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
+    En effet, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
     Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité (lemme \ref{bk}) ne peut fonctionner.
-    Par exemple, étant donné le clavier ${\egauche{a}\suppr,\retour\egauche{b}}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
+    Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     
     \clearpage
     \appendix
@@ -376,14 +376,14 @@
         \[n = |Q| + \sum_{t \in K} (|t| - 1) < |K|\] 
 
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
-        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées\corto{sur la taille maximale nécessaire du compteur pour atteindre un certain état}. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir en dessous de $\Kinf$.
+        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées\corto{Corto : non, la borne parle bien du nombre de transitions -Erwann}. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $15n^2$ transitions empruntées, dont la première moitié sont positives, ce qui amène le compteur à $(1 + \frac{15}{2})\Kinf$ au plus.
         
-        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient \corto{Précise d'où vient le 9}.
+        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient.
        
     \end{proof}
     \begin{proof}[du lemme \ref{lklak}]
        Soit $v \in \L(\A(K))$. Il existe une exécution écrivant $v$ :
-       \[ \iota \rightarrow s_{s_1,n_1} \rightarrow \cdots \rightarrow s_{s_{|v|},0} \]
+       \[ \overline{s_{0,0}} \rightarrow s_{k_1,n_1} \rightarrow \cdots \rightarrow s_{k_{|v|},0} \]
        par construction, on peut faire correspondre à chaque transition un appui sur une touche (non unique) :
        \begin{enumerate}
         \item si c'est une $\varepsilon$-transition entre $s_{s_i, n_i}$ et $s_{s_{i+1},n_{i+1}}$, alors il existe (dans $K$) $s_i \xrightarrow{\retour^{k}w} s_{i+1}$ avec $k \leqslant n_i$ et $|w| - r = n_{i+1} - n_i$
@@ -415,7 +415,21 @@
        
        Finalement, $w \in \L(\A(K))$, donc $\L(K) = \L(\A(K))$.
     \end{proof}
+    \begin{proof}[de l'indécidabilité de l'intersection dans $\BK$] 
+        
+        On réduit PCP.
 
+        On se place sur un alphabet $A = A' \cup \{\diamond\}$, et on définit $f : A'^* \to A^*$ la fonction qui ajoute un $\diamond$ à droite de chaque lettre : $f(x_1x_2\dots x_n) = x_1\diamond x_2 \diamond \dots x_n \diamond$.
+        On pose $K_p = \{\egauche{a}\edroite{a} | a \in A\}$, le clavier dont le langage est les palindromes pairs.
+        Soit $(u_i,v_i)_{1\leqslant i \leqslant n}$ une instance de PCP. On considère le clavier $K$ constitué des touches $t_i = \egauche{f(u_i)}\edroite{\widetilde{f(v_i)}}$.
+        Une récurrence sans mystère nous montre que 
+        \[\conf{\varepsilon}{\varepsilon}\cdot(t_{i_1}...t_{i_k}) = \conf{f(u_{i_1})...f(u_{i_k})}{\widetilde{f(v_{i_k})}\widetilde{f(v_{i_1})}}\]
+        De plus, quand $k>0$, $f(u_{i_1})...f(u_{i_k})\widetilde{f(v_{i_k})}\dots\widetilde{f(v_{i_1})}$ contient un unique facteur $\diamond\diamond$, 
+        entre la dernière lettre de $u_{i_k}$ et la première de $v_{i_k}$. Ce mot est donc un palindrome si, et seulement si
+        $f(u_{i_1})...f(u_{i_k})$ est le miroir de $\widetilde{f(v_{i_k})}\dots\widetilde{f(v_{i_1})}$, ce qui équivaut à $u_{i_1}\dots u_{i_k} = v_{i_1} \dots v_{i_k}$.
+
+        Ainsi, $\L(K) \cap \L(K_p) \neq \emptyset$ si, et seulement si, $(u_i,v_i)_{1\leqslant i \leqslant n} \in$ PCP, ce qui conclut.        
+    \end{proof}
     \clearpage
     \printbibliography
 \end{document}
