@@ -88,17 +88,17 @@
     \maketitle
     Ce stage suit un article de 2021, \cite{bible}, introduisant un nouveau modèle de calcul,
     baptisé claviers.
-    \vincent{Informellement, ce modèle est un système de réécriture de mots inspiré par le comportement du clavier d’un ordinateur, mais dont les touches appliqueraient plusieurs opérations basiques (qui sont celles que peut effectuer un clavier habituel). Les opérations sont appliquées depuis la position d’un curseur et sont constituées de d’écritures de lettres, d’effacement indiscriminé de lettres et de déplacement de curseurs, similaires aux opérations que peut effectuer le clavier d’un ordinateur. En fonctions des opérations de bases autorisées, on obtient différents modèles de claviers qui engendrent a priori différentes classes de langages}
+    Informellement, ce modèle est un système de réécriture de mots inspiré par le comportement du clavier d’un ordinateur, mais dont les touches appliqueraient plusieurs opérations basiques (qui sont celles que peut effectuer un clavier habituel). Les opérations sont appliquées depuis la position d’un curseur et sont constituées de d’écritures de lettres, d’effacement indiscriminé de lettres et de déplacement de curseurs, similaires aux opérations que peut effectuer le clavier d’un ordinateur. En fonctions des opérations de bases autorisées, on obtient différents modèles de claviers qui engendrent a priori différentes classes de langages
     L’un des résultats de celui-ci est que le langage de tout clavier
     utilisant seulement l’écriture de lettres et l’effacement à gauche est rationnel. 
-    On fait évoluer le modèle pour voir si on peut changer l'expressivité (avoir tous les langages rationnels, avoir les langages algébriques). \vincent{Remplacer par: On considère différents ensembles d’opérations de bases pour étudier l’expressivité des modèles obtenus.}
+    On considère différents ensembles d’opérations de bases pour étudier l’expressivité des modèles obtenus.
     
-    Le stage se divise en deux parties, qui correspondent à deux extensions du modèle des claviers, chacun palliant un manque du modèle "de base"
+    Le stage se divise en deux parties, qui correspondent à deux extensions du modèle des claviers, chacun étendant le modèle "de base" avec quelque chose qu'il n'a pas :
     \begin{itemize}
-        \item les claviers à états, visant à pallier au manque de \emph{mémoire}
-        \item les claviers symétriques, palliant au manque de \emph{symétrie}.
+        \item les claviers à états, visant à ajouter de la  \emph{mémoire}
+        \item les claviers symétriques, ajoutant de la \emph{symétrie}.
     \end{itemize}
-    \vincent{Je n’aime pas trop tes justifications de «pallier à», c’est pas vraiment une histoire de pallier à des manques, mais plutôt des extensions naturelles, je dirai.}
+    
     Chacun de ces modèles a occupé environ la moitié du stage\footnote{Le sujet annoncé était plus centré sur les claviers symétriques, mais l'étude des claviers à états a finalement pris une part importante.}. 
     La question principale des claviers à états est résolue (voir section \ref{sectionclavetats}), mais celle des claviers symétriques reste une conjecture (voir section \ref{sectionclavsym})
     \clearpage    
@@ -107,22 +107,19 @@
     \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
     \section{Claviers}
 
-    \vincent{J’ajouterai dans cette section la définition des ecritures et effacement à droite plutôt que de les introduire en début de section 3. Ça ferait une définition unique de toutes les opérations qui m’a l’air préférable, d’autant que les définitions de configurations, touches, claviers etc, sont communes à tous les modèles, que tu peux, par complétion, intégrer dans la fin de la présente section. Ensuite, dans la section 2, tu peux comme tu le fais actuellement te concentrer sur les modèles idoines.}
-
-    Nous considérons \vincent{l’ensemble d’opérations élémentaires} $S = A \cup \{\retour, \gauche, \droite\}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
-    Un élément de S est une \emph{opération élémentaire}.
+    
+    Nous considérons l’ensemble des \emph{opérations élémentaires} $S = A \cup \{\retour, \gauche, \droite\}$, où $\retour$ est appelé \emph{retour arrière}, et $\gauche$, $\droite$, \emph{flèche gauche, flèche droite}.
     Une configuration est un élément de $A^* \times A^*$, noté $\conf{u}{v}$. Intuitivement, dans cette configuration, il y a $uv$ dans la zone de texte, avec le curseur entre les deux.
     On peut alors définir la sémantique des opérations élémentaires :
     \begin{semopel}
-        L'\textbf{action} $\conf{u}{v}\cdot s$ d'une opération $s$ sur une configuration $\conf{u}{v}$ est définie comme suit :
+        L'\textbf{action (élémentaire)} $\conf{u}{v}\cdot s$ d'une opération $s$ sur une configuration $\conf{u}{v}$ est définie comme suit :
         \begin{align*}
             \forall a \in A&, \conf{u}{v}\cdot a = \conf{ua}{v} \\
             \conf{\varepsilon}{v}\cdot \retour = \conf{\varepsilon}{v} &, \conf{ua}{v}\cdot \retour = \conf{u}{v} \\
             \conf{\varepsilon}{v}\cdot \gauche = \conf{\varepsilon}{v} &, \conf{ua}{v}\cdot \gauche = \conf{u}{av} \\
             \conf{u}{\varepsilon}\cdot \droite = \conf{u}{\varepsilon} &, \conf{u}{av}\cdot \droite = \conf{ua}{v} \\
         \end{align*}
-        Une action n'étant pas dans la colonne de gauche est dite \emph{efficiente}, car l'opération a une réelle action.
-        \vincent{On pourrait dire plutôt : une action est dite efficiente si la configuration produite est différente de la configuration à laquelle l’opération est appliquée.}
+        Une action élémentaire est dite efficiente si la configuration produite est différente de la configuration à laquelle l’opération est appliquée.
     \end{semopel}
     \begin{clavier}[Touches, Claviers]
         Une \textbf{touche} est un élément de $S^*$, donc un mot sur les opérations élémentaires. \\
@@ -136,8 +133,7 @@
     \end{cases}$
 
     Elle est dite efficiente si elle ne contient pas d'action élémentaire non efficiente\footnote{Cela dépend donc du contexte. Une touche donnée n'est pas efficiente ou non efficiente, mais une \emph{action} l'est.}.
-    \vincent{Moui, c’est un peu casse-gueule comme manière de dire, mais je ne vois pas bien mieux là comme-ça. Le point qui me chifonne un peu c’est que tu n’as pas défini «action élémentaire», même si je vois bien ce que tu veux dire. Peut-être peux-tu définir ton induction avec s une opération élémentaire et dire donc que une action est efficiente si et seulement si, dans la définition inductive, toutes les actions sont efficientes (reste le détail de $\varepsilon$, mais y’a moyen d’être clair là-dessus)}
-
+    
     Pour définir le langage d'un clavier, il faut savoir quand une exécution est acceptante, grâce à un symbole "entrée", $\entree$. Elle n'apparaît qu'à la fin des touches (pas nécessairement toutes), et permet de finir la saisie.
     \vincent{Je n’aime pas du tout ce paragraphe, particulièrement le terme de saisie qui est informel et non défini. Cela dit, ça serait compliqué de l’ajouter dans les symboles normaux. Je te suggère de d’abord définir le langage des claviers automatiques comme définition de base.
     Ensuite, si tu veux mentionner le symbole $\entree$, je suggèrerai de reformuler le tout comme suit (je jette juste les idées) : on définit des claviers avec des touches de travail et des touches acceptantes (deux ensembles finis), et on considère les mots du claviers comme étant le résultat d’une séquence de touches de travail suivi d’une touche acceptante. Et tu peux mentionner que dans \cite{bible}, les touches acceptantes étaient notées par une action élémentaire $\entree$ que l’on a choisi de ne pas inclure dans notre définition pour avoir une notion simple d’effectivité (parce que c’est le problème principal que je vois à cette action là -- et en fait ça m’a l’air plus propre de tagger les actions comme acceptantes, mais j’admet que je viens juste d’y penser) -- enfin, tu peux toujours trouver une autre manière de dire qu’on mettra quand même $\entree$ en considérant que les actions de cette opération basique sont effectifs.}
@@ -145,10 +141,10 @@
     Si aucune touche ne finit par le symbole entrée, le clavier est dit automatique, et \[\L(K) = \{w | w =uv, \exists t_1...t_n, \conf{\varepsilon}{\varepsilon}\cdot t_1...t_n = \conf{u}{v}\}\]
     Sinon, dans le cas général, on définit $\L(K)$ comme \[\{w | w =uv, \exists t_1...t_n, \conf{\varepsilon}{\varepsilon}\cdot t_1...t_n = \conf{u}{v}, \mathrm{seul~} t_n \mathrm{~finit~par~\entree}\}\]
     
-    La \emph{taille} d'un clavier $K$ est définie comme $\sum_{t \in K} (|t| + 1)$ (\vincent{pourquoi +1 ? Accessoirement, je ne suis pas sûr que ce soit la peine de la définir formellement, mais si tu en as besoin, pourquoi pas}).
+    La \emph{taille} d'un clavier $K$ est définie comme $\sum_{t \in K} (|t| + 1)$.
     On note $\Kinf$ la quantité $\max\limits_{t \in K} |t|$.
     
-    Les symboles spéciaux modifient l'expressivité des claviers. \vincent{Tu n’as pas, il me semble, définit cette notion de symbole spéciaux. Du coup, je suggèrerai de définir les classes comme tu le fais en notant qu’elle contiennent toutes les écritures et effacement à gauche, ou alternativement à définir MK comme cet ensemble et noter les autres avec $MK \cup \{...\}$} On va donc définir différentes classes, qui auront différentes propriétés. On les nomme selon les caractères spéciaux autorisés :
+    Les symboles autres que l'écriture de lettres modifient l'expressivité des claviers. On va donc définir différentes classes, qui auront différentes propriétés : toutes autorisent l'écriture de lettres, mais seulement certains caractère spéciaux. On les nomme selon ceux autorisés :
     \[
     \begin{array}{ccc}
         \MK : \{\} & \GK : \{\gauche\} & \FK :\{\gauche,\droite\} \\
@@ -162,9 +158,8 @@
 
 
 	\section{Claviers à états}
-    Les claviers comme définis précédemment n'ont aucune mémoire, ce qui les rend incapables de stocker une quelconque information.
-    Pour pallier à cela, on ajoute des états :
-    \vincent{Donc j’aime pas «pallier», je dirai donc plutôt : «Une question naturelle consiste à se demander si l’ajout d’états de contrôle modifie l’expressivité du modèle obtenu»}
+    Les claviers comme définis précédemment n'ont aucune \emph{mémoire}, ce qui les rend incapables de stocker une quelconque information.
+    Une question naturelle consiste à se demander si l’ajout d’états de contrôle modifie l’expressivité du modèle obtenu.
     \begin{defétats}[Clavier à états]
         Un clavier à états est la donnée de $(Q,\Delta ,F,s_0)$ où :
         \begin{itemize}
@@ -177,7 +172,6 @@
     \begin{configétats}[Configuration étatique]
         La configuration dans laquelle se trouve un clavier à états à un moment de son calcul peut être décrite par un triplet $(u,q,v) \in A^* \times Q \times A^*$, que l'on appelle \textbf{configuration étatique}.
     \end{configétats}
-    \vincent{À la réflexion, je n’aime pas trop ta notation de configuration étatique qui ne frappe pas immédiatement comme une paire d’un état et d’une configuration, je noterai donc plutôt ça comme $(q,\conf{u}{v})$, pour qu’il soit bien clair que c’est une extension.}
     
     Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En appliquant cette transition à cette configuration, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
     On note cette opération $(u,q,v) \cdot (q,t,q') = (u',q',v')$.
@@ -190,7 +184,7 @@
     \[ \{uv | \exists\delta_1,...,\delta_n \in \Delta, \exists s_f \in F, (u,s_f,v) = (\varepsilon,s_0,\varepsilon)\cdot\delta_1\cdots\delta_n \}\]
 
     On notera $\mathsf{Q}X$ l'ensemble des claviers à états dont les transitions sont toutes de classe $X$ : $\QMK$, $\QFRK$, etc... 
-    On négligera la présence du symbole entrée, car on accepte par état final (on peut en fait simuler la touche entrée en ajoutants des états, voir annexe). \vincent{Et d’ailleurs, cette remarque peut faire écho à celle que je suggère de rajouter à la section précédente : c’est un résultat bien connu que pour les mots finis : accepter par transition finale et par état final, c’est équivalent dans de nombreux modèles, et donc pour les claviers aussi !}
+    On négligera la présence du symbole entrée, car on accepte par état final (on peut en fait simuler la touche entrée en ajoutants des états, voir annexe).
     Par abus de langage, on dira d'un langage $\L$ qu'il est dans une classe pour dire qu'il est reconnu par un clavier de cette classe : 
     par exemple on dira $\L \in \QGRK$ si il existe $K \in \QGRK$ tel que $\L = \L(K)$.
     \begin{tailleclavierQ}[taille d'un clavier à états]
@@ -207,8 +201,7 @@
     \end{RatdansQRK}
     En effet, étant donné un automate $\A$, on peut le voir comme un clavier à états, dont les touches étiquetant les transitions 
     ne font qu'écrire une seule lettre.
-    \vincent{C’est un peu rapide, mais c’est suffisant. Par contre, il faudrait une séparation visible avec le paragraphe d’après.}
-
+    \smallskip
 
     Pour pouvoir montrer l'inclusion inverse, on va étudier plus précisément la structure du mot qu'on est en train d'écrire\footnote{On considère les automates comme \emph{générateurs}, qui écrivent progressivement le mot, plutôt que comme acceptateurs, qui le lisent puis acceptent ou non.}.
     
@@ -230,21 +223,21 @@
         De plus, $\mathcal{B}(K)$ est polynomial en la taille de $K$.
     \end{inutilesbornés}
     L'idée pour construire un automate reconnaissant le même langage que $K$ est d'utiliser comme états $Q \times \llbracket 0 ; \mathcal{B}(K) \rrbracket$, dans lesquels on stocke dans la première composante l'état du clavier dans lequel on se trouve,
-    et dans la deuxième composante la taille du suffixe inutile. Notre automate ne lit une lettre que quand notre clavier écrit une lettre \emph{utile}.
-    \vincent{Il faut ajouter ici qu’on va construire un automate simulant tous les calculs du claviers avec au plus $B(K)$ lettres inutiles et que par le lemme précédent, cela suffira a avoir le même langage -- le point important par rapport à ce que tu dis, c’est que l’automate simule les calculs du claviers.}
+    et dans la deuxième composante la taille du suffixe inutile. Notre automate ne simule pas tous les calculs possibles du clavier, seulement ceux dont le suffixe  inutile est borné par $\mathcal{B}(K)$. Mais le lemme précédent nous garantit que cela suffit à reconnaitre le même langagae. Notre automate ne lit une lettre que quand notre clavier écrit une lettre \emph{utile}.
     
-    On rappelle que toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$ \vincent{Met ici la référence d’où vient ce résultat (ça vient de \cite{bible}, mais faut le rappeler et mettre le théorème d’où ça vient).}. Sans perte de généralité, on suppose que toutes les touches de notre clavier sont de cette forme, et on note alors $\sharp t = |w| - r$.
-    \vincent{J’ai enlevé plusieurs «donc» qui me semblent suspicieux «on suppose donc», je vois pas pourquoi il y a un donc.}
-
-    Formellement, on procède comme suit\footnote{on s'autorise à avoir des transitions dans l'automate étiquetées par des mots. Il n'est pas difficile d'en extraire un automate étiqueté par des lettres.} :
+    On rappelle que \autocite[Lemme~74]{bible} toute touche $t$ d'un clavier sans flèche est équivalente à $\retour^r w$ pour un certain $r$ et un certain $w$, qui peuvent être calculés en temps polynomial en la taille de $t$. Sans perte de généralité, on suppose que toutes les touches de notre clavier sont de cette forme, et on note alors $\sharp t = |w| - r$.
+    
+    On crée cet automate comme suit\footnote{on s'autorise à avoir des transitions dans l'automate étiquetées par des mots. Il n'est pas difficile d'en extraire un automate étiqueté par des lettres.} :
         \begin{itemize}
         % inutile grâce à s_0,0BARRE \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$ (\emph{pré-traitement initial})
-        \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $s_\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$ \vincent{Pourquoi $s_\alpha$ ? Pourquoi ne pas simplifier la notation en $s$ et avoir donc $(s,i)$ comme nouvel état. Plus les notations sont légères, mieux c’est. De même, que sont ces $\overline{s_{\alpha,i}}$ ? Donne une intuition ici plutôt que après la figure 1.}
+        \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$
+        \begin{example}[Intuition]    
+            Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
+        \end{example}
         \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
             \begin{enumerate}
                 \item pour tout $r \leqslant k \leqslant \mathcal{B}(K) - \sharp t$, $s_{\alpha, k} \xrightarrow{\varepsilon} s_{\beta, k + \sharp t}$
-                \item pour tout $0 \leqslant j \leqslant |w| - 1$, $s_{\alpha, r} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
-                \vincent{Deux point un peu gênants ici : les mots, usuellement, ça commence à $0$, pas à $1$. Et ton $j \leq |w|-1$ est suspicieux : tu forces à lire au moins une lettre ici $w[1,1]$, c’est une lettre si je ne me trompe. Par ailleurs, je ne crois pas que tu aies défini cette notation pour les mots (ce qui peut infirmer ma remarque précédente, d’ailleurs)}
+                \item pour tout $0 \leqslant j < |w|$, $s_{\alpha, r} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
                 \item pour tout $k \leqslant r$, $\overline{s_{\alpha,k}} \xrightarrow{\varepsilon} \overline{s_{\beta,|w|}}$
                 \item pour tout $k > r$, $\overline{s_{\alpha,k}} \xrightarrow{\varepsilon} \overline{s_{\beta,k+\sharp t}}$
                 \item pour tout $k \leqslant r$, pour tout $j < |w|$, $\overline{s_{\alpha,k}} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
@@ -266,10 +259,8 @@
         \caption{Les transitions ajoutées}
         \label{ok}
     \end{figure}
-    \begin{example}[Intuition]    
-    Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
-    \end{example}
-    Justifions informellement pourquoi notre ensemble de transitions est correct :
+    
+    Justifions informellement pourquoi notre ensemble de transitions est correct au regard de l'intuition donnée (la preuve formalisée est en annexe) :
     \begin{enumerate}
         \item Ces transitions ne font que modifier la taille du suffixe inutile. La contrainte $k \geqslant r$ pour appliquer $\retour^r w$ nous garantit qu'on n'efface pas de lettre utile (les autres conditions garantissent que les états considérés existent).
         \item Ces transitions écrivent des lettres utiles. Pour utiliser $\retour^r w$, il faut que la taille du suffixe inutile soit $r$. Ensuite, on écrit $w$, en disant qu'on écrit $|w|-j$ lettres utiles et $j$ inutiles.
@@ -277,13 +268,11 @@
         \item Similaire au cas 1.
         \item Similaire aux cas 2. et 3.
     \end{enumerate}
-    Remarquons qu'il n'existe aucune transition d'un état $s_{\alpha, k}$ vers un état $\bar{s_{\beta, k'}}$.
-
+    Remarquons qu'il n'existe aucune transition d'un état $s_{\alpha, k}$ vers un état $\bar{s_{\beta, k'}}$, ce qui correspond à l'intuition donnée plus tôt.
+    
     \begin{bisimautomclav}\label{lklak}
         Soit $K$ un clavier de $\QRK$, on a $\L(K) = \L(\A(K))$.
     \end{bisimautomclav}
-    \vincent{Le texte de la page précédente et d’ici est un peu décousu (on ne voit pas bien ce que «correct» veut dire).
-    Je te suggère de reformuler comme suit : tu cites le lemme 8 d’abord, puis tu enchaînes en disant que la preuve est donnée en appendice, et que tu donnes ici un schéma de preuve qui consiste en  : tout calcul de ton automate correspond à un calcul du clavier à état ayant au plus B(K) lettres inutile à tout moment et vice-versa. Cela se prouve par induction et par ta justification que tes transitions sont correctes.}
     On peut donc affirmer :
     \begin{QRKegalRat}
         $\QRK = \Rat$
@@ -302,9 +291,8 @@
 
 
     \section{Claviers symétriques}
-    Un autre reproche qu'on peut faire aux claviers précédents est leur \emph{assymétrie} : même quand on peut se déplacer, on ne peut écrire et effacer qu'à gauche du curseur.
+    Les claviers comme définis en section 1 sont en quelque sorte \emph{assymétriques} : même quand on peut se déplacer, on ne peut écrire et effacer qu'à gauche du curseur.
     On définit donc des opérations palliant à cela.
-    \vincent{Idem, je n’aime pas le terme de pallier, faire des reproche, etc. On peut simplement parler d’une autre extension naturelle, qui a des similitudes avec les grammaires algébriques (ce qui permettrait d’ailleurs d’introduire subtilement notre intuition).}
     \begin{defopsym}[Opérations symétriques]
         Pour toute lettre $a \in A$, on définit les opérations d'écriture à gauche et à droite, $\egauche{a}$ et $\edroite{a}$, ainsi que l'effacement droit, noté $\suppr$.
         On définit leur sémantique :
@@ -315,7 +303,6 @@
             \conf{u}{\varepsilon} \cdot \suppr &= \conf{u}{\varepsilon}
         \end{align*}
     \end{defopsym}
-    \vincent{Comme dit plus tôt, je déplacerai ces opération en section 1.}
     On notera $\mathsf{B}X$ l'ensemble des claviers symétriques dont les transitions sont toutes de classe $X$ (à gauche ou à droite). On s'intéressera principalement à $\BK$ et $\BRK$.
     \subsection{Propriétés d'inclusion et de stabilité}
     Voilà quelques résultats sur les claviers symétriques.
@@ -348,14 +335,13 @@
     En effet, autant on peut simuler $\edroite{a}$ par $\touche{a}\gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
          
     \subsection{Conjectures}\label{sectionclavsym}
-    Les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$). Cela nous amène à conjecturer :
+    Les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$). La similarité des claviers symétriques avec les grammaires linéaires nous poussent à penser que :
     \begin{example}[Conjecture 1]
         $\BRK \subset \Alg$
     \end{example}
-    En effet, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
-    \vincent{Ce paragraphe est étrange pour deux raisons : - le simple fait qu’on soit capable de générer un langage qui n’est pas rationnel suffit à montrer que le langage n’est pas inclus dans les rationnels, donc inutile de parler du problème indécidable (d’autant que ce genre de remarques est casse-gueule), - la vraie raison qui fait qu’on conjecture que c’est inclus dans les algébriques, c’est que syntaxiquement, le clavier est proche d’une grammaire algébrique (linéaire) et qu’on n’a pas trouvé de langage non-algébrique engendrable par un clavier BRK. }
+    De plus, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
-    Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité \vincent{pour construire une grammaire algébrique équivalente} (lemme \ref{bk}) ne peut fonctionner \vincent{ne fonctionne pas}.
+    Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité pour construire une grammaire algébrique équivalente (lemme \ref{bk}) ne fonctionne pas.
     Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     \vincent{Je développerais l’exemple ici pour bien montrer clairement que dans le cas de ce langage, pour un mot de taille $2*k$, le seul calcul le reconnaissant produit $k$ lettres inutiles.}
     \vincent{On peut tant qu’à faire mentionner que les quelques exemples de comportement de ce type que l’on a trouvé se trouvent être des langages rationnels, et que cela est surprenant -- mais sans trop s’avancer, il est possible qu’on ait mal cherché.}
@@ -388,22 +374,10 @@
         
         On remarque un petit lemme : 
     \textit{
-	Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
-	\[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
-	au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.}
-
-\cortoin{Suggestion :
 	Un calcul acceptant se décompose en une alternation de \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié, et de transitions qui étendent strictement le préfixe utile.
-	\textit{Figure à adapter en rajoutant les transitions utiles entre les pas}
-
-	Les transitions utiles effacent toutes les lettres inutiles, puis ajoutent au moins une lettre utile et un certain nombre de lettres inutiles. Dans tous les cas le nombre de lettres inutiles avant et après leur application est borné par $\Kinf$.
-	
-	Quand aux pas, ils peuvent être simulés par un système à compteurs 
-	\textit{Description du système à un compteur en question, \textbf{en faisant deux cas, un général et un pour le premier pas, qui peut faire des transitions non efficientes}}
-
-	}
-    \vincent{Je suggère de donner des noms aux séquences de transitions inutiles ET aux transitions utiles, ce qui permettra de clarifier le texte après -- et accessoirement de virer l’ambiguïté sur où sont ces transitions utiles dans les pas.}
-
+	\[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle\varepsilon,8,\_\rangle \rightarrow \langle ab,5,\_\rangle \rightsquigarrow \langle ab,2,\_\rangle \rightarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightarrow \langle w,0,s_F\rangle \footnote{\_ désigne un état quelconque.}\]
+	Les transitions utiles effacent toutes les lettres inutiles, puis ajoutent au moins une lettre utile et un certain nombre de lettres inutiles. Dans tous les cas le nombre de lettres inutiles avant et après leur application est borné par $\Kinf$. }
+    \erwann{honnêtement, je ne vois pas comment simuler la première étape.}
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
         Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q'$ et un ensemble de transitions étiquetées par 0,1, ou -1, dans lequel une configuration est un élément de $Q' \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
@@ -416,9 +390,9 @@
         \[n = |Q| + \sum_{t \in K} (|t| - 1) < |K|\] 
 
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
-        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées\corto{Corto : non, la borne parle bien du nombre de transitions -Erwann}. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $15n^2$ transitions empruntées, dont la première moitié sont positives, ce qui amène le compteur à $(1 + \frac{15}{2})\Kinf$ au plus.
+        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $14n^2+n\Kinf$ transitions empruntées, dont la première moitié sont positives, ce qui amène le compteur à $(1+\frac{n}{2})\Kinf + 7n^2$ au plus.
         
-        Ainsi, $\mathcal{B}(K) = 9|K|^2$ convient.
+        Comme $n,\Kinf < |K|$, $\mathcal{B}(K) = 9|K|^2$ convient.
        
     \end{proof}
     \begin{proof}[du lemme \ref{lklak}]
