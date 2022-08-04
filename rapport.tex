@@ -388,11 +388,21 @@
         
         On remarque un petit lemme : 
     \textit{
-        Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première \corto{Si la transition utile fait partie du pas alors la définition de pas est incorrecte.}, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
-        \[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
-        au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire. \corto{Il manque encore la phase du début où on n'écrit pas de lettres utiles et où les effets de bord apparaissent}
-    }
-        \vincent{Je suggère de donner des noms aux séquences de transitions inutiles ET aux transitions utiles, ce qui permettra de clarifier le texte après -- et accessoirement de virer l’ambiguïté sur où sont ces transitions utiles dans les pas.}
+	Un calcul acceptant se décompose en \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié. La transition écrivant des lettres utiles est considérée comme la première, et le pas couvre alors toutes les transitions jusqu'à la prochaine écrivant une lettre utile. 
+	\[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle ab,5,\_\rangle \rightsquigarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightsquigarrow \langle w,0,s_F\rangle \]
+	au début de chaque pas, les lettres utiles ont été écrites par une seule touche : donc $x < \Kinf$. De même avant la dernière étape d'un pas (celle qui écrit le facteur utile), car la touche qui va écrire une lettre utile (la première touche du pas suivant, donc) doit effacer tout le suffixe inutile avant de pouvoir le faire.}
+
+\cortoin{Suggestion :
+	Un calcul acceptant se décompose en une alternation de \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié, et de transitions qui étendent strictement le préfixe utile.
+	\textit{Figure à adapter en rajoutant les transitions utiles entre les pas}
+
+	Les transitions utiles effacent toutes les lettres inutiles, puis ajoutent au moins une lettre utile et un certain nombre de lettres inutiles. Dans tous les cas le nombre de lettres inutiles avant et après leur application est borné par $\Kinf$.
+	
+	Quand aux pas, ils peuvent être simulés par un système à compteurs 
+	\textit{Description du système à un compteur en question, \textbf{en faisant deux cas, un général et un pour le premier pas, qui peut faire des transitions non efficientes}}
+
+	}
+    \vincent{Je suggère de donner des noms aux séquences de transitions inutiles ET aux transitions utiles, ce qui permettra de clarifier le texte après -- et accessoirement de virer l’ambiguïté sur où sont ces transitions utiles dans les pas.}
 
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
