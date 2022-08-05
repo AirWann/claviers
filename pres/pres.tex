@@ -1,16 +1,64 @@
-\documentclass{beamer}
+\documentclass[french]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb}
+
+\usepackage{babel}
+\input{../keyboard_symbols.tex}
 \usetheme{boadilla}
 
+
+%Pour le TITLEPAGE
 \title{Claviers symétriques et à états}
-\author{Erwann LOULERGUE, \texorpdfstring{\\ supervisé par Vincent PENELLE et Corto MASCLE}{}}
+\author[Erwann LOULERGUE]{Erwann LOULERGUE, \texorpdfstring{\\supervisé par Vincent PENELLE et Corto MASCLE}{}}
 \date{Juin \& Juillet 2022}
+\institute[ENS Paris-Saclay]{Au LaBRI}
 
 
 \begin{document}
-\begin{frame}[plain]
-    \maketitle
+
+\begin{frame}
+	\titlepage
 \end{frame}
 
-\begin{frame}{Frame Title}
+\begin{frame}{Sommaire}
+	\tableofcontents
 \end{frame}
+
+\section{Définitions}
+\begin{frame}{Opérations élémentaires}
+	blabla
+\end{frame}
+
+\begin{frame}
+	Un \textbf<2,3>{texte} en gras. 
+	\visible<3>{Un texte visible sur la 3\ieme{} couche}
+\end{frame}
+
+\begin{frame}{Titre (facultatif)} 
+\framesubtitle{Sous titre (facultatif aussi)}
+	\begin{block}{Remarque}
+	Un bloc
+	\end{block}
+	
+	\begin{alertblock}{Proposition}
+	Un bloc alerte
+	\end{alertblock}
+	
+	\begin{exampleblock}<2>{Exemple}
+	Un bloc exemple qui est visible sur la 2\ieme{} couche : $f(x)=2x$.
+	\end{exampleblock}
+\end{frame}
+
+\section{Claviers à états}
+\begin{frame}{La section 2 commence}
+\begin{itemize}
+	\item<1-> On peut cliquer sur les titres de la barre de gauche pour naviguer dans les sections du pdf (essayez !).
+	\item<2-> On peut changer le ``look'' du beamer, en changeant de thème. Retournez dans le fichier source et compilez avec les autres thèmes proposés (il existe énormément de thèmes; seuls trois sont proposés dans le source).
+\end{itemize}
+
+\end{frame}
+
 \end{document}
