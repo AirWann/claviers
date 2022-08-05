@@ -10,3 +10,13 @@ rapport.diagnose
 rapport.blg
 rapport.bcf
 rapport.bbl
+pres/pres.aux
+pres/pres.fdb_latexmk
+pres/pres.fls
+pres/pres.log
+pres/pres.nav
+pres/pres.out
+pres/pres.pdf
+pres/pres.snm
+pres/pres.toc
+pres/pres.synctex.gz
