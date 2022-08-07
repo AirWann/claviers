@@ -1,6 +1,6 @@
 \documentclass[11pt,french]{beamer}
 
-\usepackage{newpxtext,newpxmath} % Or \usepackage{palatino}
+\usepackage{newpxtext,newpxmath}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathtools,amssymb,stmaryrd}
@@ -11,6 +11,11 @@
 \usetheme{metropolis}
 \metroset{progressbar=frametitle}
 \metroset{block=fill}
+
+\usepackage{tikz}     % Un package pour les dessins
+\usepackage{tikz-cd}
+\usetikzlibrary{cd, automata,positioning,arrows}
+\usepackage{adjustbox}
 
 \renewcommand{\L}{\mathcal{L}}
 \renewcommand{\bar}{\overline}
@@ -54,6 +59,7 @@
 			\item $\gauche$ et $\droite$: déplace le curseur à gauche ou à droite.
 		\end{itemize}
 	\end{block}
+	\vspace{-8pt}
 	On note $S$ l'ensemble des opérations élémentaires.
 	\pause
 	\begin{block}{Claviers}
@@ -146,15 +152,73 @@
 	\end{block}
 \end{frame}
 \begin{frame}{Définition}
-	\begin{block}{Clavier à état}
-		Un clavier à états est la donnée de $(Q,\Delta ,F,s_0)$
-	\end{block}
-
-	\begin{block}{Configuration étatique}
-		La configuration d'un clavier à états pendant son calcul est décrite par $(u,q,v) \in A^* \times Q \times A^*$, appelé \textbf{configuration étatique}.
-	\end{block}
 	\begin{exampleblock}{Action d'une touche sur une configuration}	
 		Soit $(u,q,v)$ une configuration étatique, et $(q,t,q') \in \Delta$. En appliquant cette transition, on passe dans la configuration $(u',q',v')$, avec $\conf{u'}{v'} = \conf{u}{v} \cdot t$.
 	\end{exampleblock}
+	Une touche modifie le mot (clavier) et fait passer dans un autre état (automate).
+	\pause
+    On peut donc définir le langage d'un clavier à états :
+    \[ \{uv | \exists\delta_1,...,\delta_n \in \Delta, \exists s_f \in F, (u,s_f,v) = (\varepsilon,s_0,\varepsilon)\cdot\delta_1\cdots\delta_n \}\]
+	\pause
+    On notera $\mathsf{Q}X$ l'ensemble des claviers à états dont les transitions sont toutes de classe $X$ : $\QMK$, $\QFRK$, \textit{etc}... 
+\end{frame}
+\begin{frame}{$\QRK = \Rat$}
+	$\QRK$ est un bon candidat pour être égal à $\Rat$, car il ajoute des états à $\RK$.
+	Une inclusion est triviale.
+	\pause
+
+	On veut donc montrer que pour tout clavier $K \in \QRK$, il existe un automate fini le simulant.
+	\pause
+
+	On sait que dans un calcul de $K$, les configurations sont toutes de la forme $(w,q,\varepsilon)$. On divise le mot $w$ en deux :
+	\begin{itemize}
+		\item un préfixe \emph{utile} qui ne sera jamais effacé.
+		\item un suffixe \emph{inutile} qui sera effacé pendant l'éxécution.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Le lemme clé}
+	On va essayer de construire un automate $\A(K)$ dont les états seront $(s,k)$ pour $s$ un état de $K$, et $k$ la taille du suffixe inutile : l'automate lit une lettre quand $K$ écrit une lettre \emph{utile}.
+	\pause
+
+	\emph{A priori}, ces états ne sont pas en nombre fini\dots 
+	\pause
+	\begin{alertblock}{Lemme}
+		Soit $K$ un clavier à états de $\QRK$. Il existe un entier $\mathcal{B}(K)$, ne dépendant que de $K$, tel que pour tout mot $w \in \L(K)$,
+        il existe une exécution de $K$ qui écrit $w$ et dont le suffixe inutile est de longueur majorée par $\mathcal{B}(K)$ à chaque étape. \\
+        De plus, $\mathcal{B}(K)$ est polynomial en la taille de $K$.
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{La construction}
+	\adjustbox{scale=0.6,center}{%
+		$$
+			\begin{tikzcd}[ampersand replacement=\&]
+				{s_{\alpha,0}}                                                                                                                                     \&  \&  \& {s_{\beta,0}}              \&  \& {\overline{s_{\alpha,0}}} \arrow[rrrd, "\varepsilon", dashed]                                                                      \&  \&  \& \vdots                       \\
+				\vdots                                                                                                                                             \&  \&  \& \vdots                     \&  \& \vdots                                                                                                                             \&  \&  \& {\overline{s_{\beta,|w|}}}   \\
+				{s_{\alpha,r}} \arrow[rrruu, "w", bend left] \arrow[rrru, "{w[1,|w|-j]}", dotted] \arrow[rrr, "\dots", dotted] \arrow[rrrd, "\varepsilon", dashed] \&  \&  \& {}                         \&  \& {\overline{s_{\alpha,r}}} \arrow[rrru, "\varepsilon", dashed] \arrow[rrrdd, "w"] \arrow[rrrdddd, "{w[1]}"'] \arrow[rrrddd, dotted] \&  \&  \& {\overline{s_{\beta,|w|+1}}} \\
+				{s_{\alpha,r+1}} \arrow[rrrd, "\varepsilon", dashed]                                                                                               \&  \&  \& {s_{\beta,|w|}}            \&  \& {\overline{s_{\alpha,r+1}}} \arrow[rrru, "\varepsilon", dashed]                                                                    \&  \&  \&                              \\
+				\vdots \arrow[rrrd, "\varepsilon", dotted]                                                                                                         \&  \&  \& \vdots                     \&  \&                                                                                                                                    \&  \&  \& {s_{\beta,0}}                \\
+				\vdots \arrow[rrrd, "\varepsilon", dotted]                                                                                                         \&  \&  \& \vdots                     \&  \&                                                                                                                                    \&  \&  \& {}                           \\
+				{s_{\alpha,\mathcal{B}(K)}}                                                                                                                        \&  \&  \& {s_{\beta,\mathcal{B}(K)}} \&  \&                                                                                                                                    \&  \&  \& {s_{\beta,|w|-1}}           
+			\end{tikzcd}
+		$$
+	}
+	\pause
+	\begin{center}
+		Cet automate reconnait le même langage que $K$.
+	\end{center}
+\end{frame}
+\begin{frame}{Qu'a-t-on vraiment prouvé ?}
+	Nous sommes partis des claviers de $\RK$, donc des machines qui écrivent et effacent, et nous leurs avons rajouté des états.
+	\pause
+
+    En prenant le point de vue opposé (en partant des automates), notre résultat peut se formuler comme ceci : \\
+    \emph{Les automates pouvant effacer des lettres ont exactement la même expressivité que les automates habituels.}
+\end{frame}
+
+\section{Claviers symétriques}
+\begin{frame}{Définition}
+	
+
 \end{frame}
 \end{document}

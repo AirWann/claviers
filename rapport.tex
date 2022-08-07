@@ -389,7 +389,7 @@
 
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
-        Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q'$ et un ensemble de transitions étiquetées par 0,1, ou -1, dans lequel une configuration est un élément de $Q' \times \mathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
+        Il nous suffit donc de considérer que notre clavier est un système à un compteur, c'est à dire un ensemble d'états $Q'$ et un ensemble de transitions étiquetées par 0,1, ou -1, dans lequel une configuration est un élément de $Q' \times \varmathbb{N}$, et pour $(q,k,q')$ une transition, on peut passer de $(q,x)$ à $(q',x+k)$ tant que le compteur ne passe pas en dessous de 0.
         Ainsi, on transforme notre clavier en recopiant les états, mais en rajoutant à la place de toute transition $(q,\retour^rw,q')$, $r+|w|-1$ états : 
         
         \begin{tikzcd}
@@ -433,7 +433,7 @@
        Et donc, que $\A(K)$ simule effectivement $K$, c'est-à-dire que $\varepsilon,0,s_0 \rightarrow^*_K v,0,f$, donc $v \in \L(K)$, soit $\L(\A(K)) \subset \L(K)$.
 
        Le sens réciproque ne pose pas de problème particulier. On considère $w \in \L(K)$ et grâce au lemme \ref{bk}, on considère une exécution de $K$ qui reconnait $w$ en ayant toujours moins de $\mathcal{B}(K)$ lettres inutiles.
-       A chaque appui sur une touche, il existe une transition dans l'automate correspondant à cette touche \emph{et au nombre de lettres inutiles restantes après}. L'invariant : Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}, est maintenu par construction.
+       A chaque appui sur une touche, il existe une seule transition dans l'automate correspondant à cette touche \emph{et au nombre de lettres inutiles restantes après}. L'invariant : Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}, est maintenu par construction.
     
        Finalement, $w \in \L(\A(K))$, donc $\L(K) = \L(\A(K))$.
     \end{proof}
