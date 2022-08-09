@@ -270,12 +270,12 @@
     \begin{bisimautomclav}\label{lklak}
         Pour $K$ un clavier de $\QRK$, on a $\L(K) = \L(\A(K))$.
     \end{bisimautomclav}
-
+    \vspace{10pt}
     On peut donc affirmer :
     \begin{QRKegalRat}\label{th1}
         $\QRK = \Rat$
     \end{QRKegalRat}
-    Le fait que $\mathcal{B}(K)$ soit polynomial en $|K|$ nous permet d'obtenir le corollaire comme quoi le problème du mot dans $\QRK$ est résoluble en temps polynomial.
+    Le fait que $\mathcal{B}(K)$ soit polynomial en $|K|$ nous permet d'obtenir le corollaire comme quoi le problème du mot dans $\QRK$ est dans NP.
     \begin{thmbox}[L]{\textbf{\emph{Autre point de vue}}}
         Nous sommes partis des claviers de $\RK$, donc des machines qui écrivent et effacent, et nous leurs avons rajouté des états.
         En prenant le point de vue opposé, le théorème 1 peut se formuler comme ceci : \\
@@ -315,7 +315,7 @@
     \subsection{Propriétés d'inclusion et de stabilité}
     Voilà quelques résultats sur les claviers symétriques.
 
-    \begin{tabular}{|p{0.5\textwidth}|p{0.4\textwidth}|}
+    \begin{tabular}{|p{0.49\textwidth}|p{0.4\textwidth}|}
         \hline
         \textbf{Propriété} & \textbf{Exemple/Contre-exemple/Remarque} \\
         \hline
@@ -340,7 +340,7 @@
     
     Ce dernier langage nous permet aussi d'affirmer que les deux effacements sont nécessaires pour capturer toute l'expressivité de $\BRK$ ; il ne se trouve pas dans la classe sans effacement droit, et son miroir ne se trouve pas dans la classe sans effacement gauche.
 
- %   En effet, autant on peut simuler $\edroite{a}$ par $\touche{a}\gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
+    En effet, autant on peut simuler $\edroite{a}$ par $\egauche{a} \gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
          
     \subsection{Conjectures}\label{sectionclavsym}
     Les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$). La similarité des claviers symétriques avec les grammaires linéaires nous poussent à penser que :
@@ -350,9 +350,9 @@
     De plus, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
     Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité pour construire une grammaire algébrique équivalente (lemme \ref{bk}) ne fonctionne pas.
-    Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles. Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
-    \vincent{Je développerais l’exemple ici pour bien montrer clairement que dans le cas de ce langage, pour un mot de taille $2*k$, le seul calcul le reconnaissant produit $k$ lettres inutiles.}
-    \vincent{On peut tant qu’à faire mentionner que les quelques exemples de comportement de ce type que l’on a trouvé se trouvent être des langages rationnels, et que cela est surprenant -- mais sans trop s’avancer, il est possible qu’on ait mal cherché.}
+    Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles : cela consiste à écrire $a^{2k}$, puis remplacer $k$ $a$ par des $b$ (ou bien l'inverse). Mais dans tous les cas : si il y a des lettres des deux côtés, toute touche ne change pas le nombre de lettres. Donc il nous faut bien écrire $2k$ lettres d'un côté pour écrire $a^kb^k$.
+    
+    Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     
     \clearpage
     \appendix
@@ -385,7 +385,6 @@
 	Un calcul acceptant se décompose en une alternation de \textbf{pas}, définis comme une suite de transitions durant lesquelles le préfixe utile n'est pas modifié, et de transitions qui étendent strictement le préfixe utile.
 	\[ \langle\varepsilon,0,s_0\rangle \rightsquigarrow \langle\varepsilon,8,\_\rangle \rightarrow \langle ab,5,\_\rangle \rightsquigarrow \langle ab,2,\_\rangle \rightarrow \langle abc,1,\_\rangle \rightsquigarrow \cdots \rightarrow \langle w,0,s_F\rangle \footnote{\_ désigne un état quelconque.}\]
 	Les transitions utiles effacent toutes les lettres inutiles, puis ajoutent au moins une lettre utile et un certain nombre de lettres inutiles. Dans tous les cas le nombre de lettres inutiles avant et après leur application est borné par $\Kinf$. }
-    \erwann{honnêtement, je ne vois pas comment simuler la première étape.}
 
         Durant un pas, les lettres utiles (auxquelles on ne touche pas) ne nous intéressent pas, on ne s'intéresse qu'à aller dans le bon état avec un suffixe inutile de taille adaptée à la touche sur laquelle on veut appuyer.
         
@@ -393,10 +392,19 @@
         Ainsi, on transforme notre clavier en recopiant les états, mais en rajoutant à la place de toute transition $(q,\retour^rw,q')$, $r+|w|-1$ états : 
         
         \begin{tikzcd}
-            q \arrow[r, "\retour^rw"] & q' & {} \arrow[r, Rightarrow] & {} & q \arrow[r, "-1"] & q^t_1 \arrow[r, "-1", dotted] & q^t_r \arrow[r, "+1", dotted] & q^t_{|t|-1} \arrow[r, "+1"] & q'
+            q \arrow[r, "\retour^rw"] & q' \arrow[r, Rightarrow] & {} & q \arrow[r, "-1"] & q^t_1 \arrow[r, "-1", dotted] & q^t_r \arrow[r, "+1", dotted] & q^t_{|t|-1} \arrow[r, "+1"] & q'
         \end{tikzcd}
+
         Finalement, le nombre d'états de notre système est 
         \[n = |Q| + \sum_{t \in K} (|t| - 1) < |K|\] 
+        Mais le premier pas, avant qu'il y aie des lettres utiles, doit être traité différemment, car on a le droit d'effacer plus de lettres inutiles que l'on a. 
+        On utilise les tests à zéro : si on est encore en train d'effacer mais qu'on n'a plus de lettres inutiles, on peut "sauter" à l'endroit où on commence à écrire. On obtient ces transitions à la place de celles d'au-dessus :
+        
+        \begin{tikzcd}
+            q \arrow[r, "-1"] \arrow[rr, bend right] & q^t_1 \arrow[r, "-1", dotted] \arrow[r, "=0 ?"', bend right] & q^t_r \arrow[r, "+1", dotted] & q^t_{|t|-1} \arrow[r, "+1"] & q'
+        \end{tikzcd}
+        
+        Heureusement, on se trouve avec le même nombre d'états, ce qui ne changera pas la borne.
 
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
         Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $14n^2+n\Kinf$ transitions empruntées, dont la première moitié sont positives, ce qui amène le compteur à $(1+\frac{n}{2})\Kinf + 7n^2$ au plus.
