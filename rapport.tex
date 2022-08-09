@@ -350,7 +350,7 @@
     De plus, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
     Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité pour construire une grammaire algébrique équivalente (lemme \ref{bk}) ne fonctionne pas.
-    Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles : cela consiste à écrire $a^{2k}$, puis remplacer $k$ $a$ par des $b$ (ou bien l'inverse). Mais dans tous les cas : si il y a des lettres des deux côtés, toute touche ne change pas le nombre de lettres. Donc il nous faut bien écrire $2k$ lettres d'un côté pour écrire $a^kb^k$.
+    Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles : cela consiste à écrire $a^{2k}$, puis remplacer $k$ $a$ par des $b$ (ou bien l'inverse). Mais dans tous les cas, le nombre de lettres reste constant dès qu'il y a des lettres des deux côtés. Donc il nous faut bien écrire $2k$ lettres d'un côté pour écrire $a^kb^k$.
     
     Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     
@@ -407,7 +407,7 @@
         Heureusement, on se trouve avec le même nombre d'états, ce qui ne changera pas la borne.
 
         Comme on se place dans un calcul acceptant, on considère que notre pas est possible : $(q_\alpha,x_\alpha) \rightarrow^* (q_\beta,x_\beta)$ ; on cherche à montrer que s'il existe un tel pas, alors il en existe un durant lequel $x$ est borné par $\mathcal{B}(K)$.
-        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta < \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $14n^2+n\Kinf$ transitions empruntées, dont la première moitié sont positives, ce qui amène le compteur à $(1+\frac{n}{2})\Kinf + 7n^2$ au plus.
+        Le théorème 2.2 de \cite{shortpathOCS} nous donne une borne de $14n^2 + n \max (x_\alpha,x_\beta)$ transitions empruntées. Or $x_\alpha,x_\beta \leq \Kinf$, et les transitions ne peuvent pas être toutes positives, car on doit revenir à une valeur de compteur en dessous de $\Kinf$. Le pire cas est donc $x_\alpha = x_\beta = \Kinf$, avec $14n^2+n\Kinf$ transitions empruntées, dont la moitié sont positives, ce qui amène le compteur à $(1+\frac{n}{2})\Kinf + 7n^2$ au plus.
         
         Comme $n,\Kinf < |K|$, $\mathcal{B}(K) = 9|K|^2$ convient.
        
@@ -453,7 +453,7 @@
         On pose $K_p = \{\egauche{a}\edroite{a} | a \in A\}$, le clavier dont le langage est les palindromes pairs non vides.
         Soit $(u_i,v_i)_{1\leqslant i \leqslant n}$ une instance de PCP. On considère le clavier $K$ constitué des touches $t_i = \egauche{f(u_i)}\edroite{\widetilde{f(v_i)}}$.
         Une récurrence simple nous montre que 
-        \[\conf{\varepsilon}{\varepsilon}\cdot(t_{i_1}...t_{i_k}) = \conf{f(u_{i_1})...f(u_{i_k})}{\widetilde{f(v_{i_k})}\widetilde{f(v_{i_1})}}\]
+        \[\conf{\varepsilon}{\varepsilon}\cdot(t_{i_1}...t_{i_k}) = \conf{f(u_{i_1})...f(u_{i_k})}{\widetilde{f(v_{i_k})}...\widetilde{f(v_{i_1})}}\]
         De plus, quand $k>0$, $f(u_{i_1})...f(u_{i_k})\widetilde{f(v_{i_k})}\dots\widetilde{f(v_{i_1})}$ contient un unique facteur $\diamond\diamond$, 
         entre la dernière lettre de $u_{i_k}$ et la première de $v_{i_k}$. Ce mot est donc un palindrome si, et seulement si
         $f(u_{i_1})...f(u_{i_k})$ est le miroir de $\widetilde{f(v_{i_k})}\dots\widetilde{f(v_{i_1})}$, ce qui équivaut à $u_{i_1}\dots u_{i_k} = v_{i_1} \dots v_{i_k}$.
