@@ -105,7 +105,7 @@
     \clearpage    
     
     
-    \emph{Dans tout le document, $A$ désigne un alphabet quelconque.}
+    \emph{Dans tout le document, $A$ désigne un alphabet quelconque. On convient que les mots sont indexés à partir de 1, et que $w[i,j]$ désigne les lettres de la $i$-ème à la $j$-ème incluses.}
     \section{Claviers}
 
     
@@ -278,7 +278,7 @@
     Le fait que $\mathcal{B}(K)$ soit polynomial en $|K|$ nous permet d'obtenir le corollaire comme quoi le problème du mot dans $\QRK$ est dans NP.
     \begin{thmbox}[L]{\textbf{\emph{Autre point de vue}}}
         Nous sommes partis des claviers de $\RK$, donc des machines qui écrivent et effacent, et nous leurs avons rajouté des états.
-        En prenant le point de vue opposé, le théorème 1 peut se formuler comme ceci : \\
+        En prenant le point de vue opposé, c'est-à-dire en partant d'automates (vus comme \emph{générateurs} et non \emph{accepteurs}), et en leur rajoutant le symbole $\retour$ qui annule la lettre écrite par la transition précédente, le théorème 1 peut se formuler comme ceci : \\
         \emph{Les automates pouvant effacer des lettres ont exactement la même expressivité que les automates habituels.}
     \end{thmbox}
     \begin{figure}
@@ -300,7 +300,7 @@
 
     \section{Claviers symétriques}
     Les claviers comme définis en section 1 sont en quelque sorte \emph{assymétriques} : même quand on peut se déplacer, on ne peut écrire et effacer qu'à gauche du curseur.
-    On définit donc des opérations palliant à cela.
+    On définit donc des opérations ajoutant de la symétrie.
     \begin{defopsym}[Opérations symétriques]
         Pour toute lettre $a \in A$, on définit les opérations d'écriture à gauche et à droite, $\egauche{a}$ et $\edroite{a}$, ainsi que l'effacement droit, noté $\suppr$.
         On définit leur sémantique :
@@ -338,7 +338,7 @@
     \end{tabular}
 
     
-    Ce dernier langage nous permet aussi d'affirmer que les deux effacements sont nécessaires pour capturer toute l'expressivité de $\BRK$ ; il ne se trouve pas dans la classe sans effacement droit, et son miroir ne se trouve pas dans la classe sans effacement gauche.
+    Ce dernier langage ($(a^2)^*(b+b^2)$) nous permet aussi d'affirmer que les deux effacements sont nécessaires pour capturer toute l'expressivité de $\BRK$ ; il ne se trouve pas dans la classe sans effacement droit, et son miroir ne se trouve pas dans la classe sans effacement gauche.
 
     En effet, autant on peut simuler $\edroite{a}$ par $\egauche{a} \gauche$, autant $\suppr$ n'est pas toujours équivalent à $\droite\retour$ : elles n'ont pas le même effet sur la configuration $\conf{a}{\varepsilon}$.
          
@@ -349,10 +349,10 @@
     \end{example}
     De plus, l'indécidabilité du caractère vide ou non de l'intersection de deux langages de $\BRK$ (voir annexe) nous montre que cette classe contient vraiment significativement plus que les rationnels, car ce problème est décidable sur ceux-ci.
     
-    Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité pour construire une grammaire algébrique équivalente (lemme \ref{bk}) ne fonctionne pas.
+    Cependant, même si on peut définir une notion de lettres inutiles (des deux côtés du curseur) similairement à ce qui est fait en section 2, la technique constituant à borner uniformément leur quantité pour construire une grammaire algébrique équivalente (simimairement au lemme \ref{bk}) ne fonctionne pas.
     Par exemple, étant donné le clavier $\{\egauche{a}\suppr,\retour\egauche{b}\}$, son langage est tout simplement $a^*b^*$, mais écrire le mot $a^kb^k$ nécessite $k$ lettres inutiles : cela consiste à écrire $a^{2k}$, puis remplacer $k$ $a$ par des $b$ (ou bien l'inverse). Mais dans tous les cas, le nombre de lettres reste constant dès qu'il y a des lettres des deux côtés. Donc il nous faut bien écrire $2k$ lettres d'un côté pour écrire $a^kb^k$.
     
-    Ainsi, il n'existe aucune quantité pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
+    Ainsi, il n'existe aucune quantité ne dépendant que du clavier pouvant borner le nombre de lettres inutiles nécessaires à l'écriture d'un mot.
     
     \clearpage
     \appendix
