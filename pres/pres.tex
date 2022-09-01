@@ -1,6 +1,7 @@
 \documentclass[11pt,french,professionalfonts]{beamer}
-\usefonttheme{serif}
-\usepackage{newpxtext,newpxmath}
+
+%\usefonttheme{serif}
+%\usepackage{newpxtext,newpxmath}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathtools,amssymb,stmaryrd}
@@ -11,6 +12,8 @@
 \usetheme{metropolis}
 \metroset{progressbar=frametitle}
 \metroset{block=fill}
+
+\usepackage{xcolor}
 
 \usepackage{tikz}     % Un package pour les dessins
 \usepackage{tikz-cd}
@@ -46,7 +49,7 @@
 		\includegraphics[height=0.3\textwidth]{Drame.jpg}	
 	\end{center}
 
-	On possède un clavier ne fonctionnant pas normalement. Par exemple, si on appuie sur la touche $A$, il écrit $\touche{abc}$, si on appuie sur la touche $B$, il efface deux caractères\dots
+	On possède un clavier ne fonctionnant pas normalement. 
 
 	Quels mots peut-on écrire avec ce clavier ? Et de manière générale, étant donné un clavier, peut-on écrire un mot donné ?
 
@@ -129,9 +132,10 @@
 			\MK : \{\} & \GK : \{\gauche\} & \FK :\{\gauche,\droite\} \\
 			\EK : \{\entree\} & \GEK : \{\gauche,\entree\} & \FEK :\{\gauche,\droite,\entree\} \\
 			\RK : \{\retour\} & \GRK : \{\gauche,\retour\} & \FRK :\{\gauche,\droite,\retour\} \\
-			\REK : \{\retour, \entree\} & \GREK : \{\gauche,\retour,\entree\} & \FREK :\{\gauche,\droite,\retour,\entree\} \\
+			\color{orange}{\REK : \{\retour, \entree\}} & \GREK : \{\gauche,\retour,\entree\} & \FREK :\{\gauche,\droite,\retour,\entree\} \\
 		\end{array}
 	\]
+	\small{Par abus de langage, on dira qu'un langage est dans une classe pour dire qu'il est reconnu par un clavier de cette classe.}
  \end{frame}
 
 
@@ -141,7 +145,7 @@
 		Un clavier à états est la donnée de $(Q,\Delta ,F,s_0)$ où :
         \begin{itemize}
             \item $Q$ est un ensemble d'\textbf{états}
-            \item $\Delta \subset Q \times S^* \times Q$ est un ensemble fini de \textbf{transitions}
+            \item $\Delta \subset Q \times S^* \times Q$\footnote{rappel : $S$ est l'ensemble des opérations élémentaires.} est un ensemble fini de \textbf{transitions}
             \item $F$ est un ensemble d'états dits \textbf{finaux}
             \item $s_0 \in Q$ est un état dit \textbf{initial}
         \end{itemize}
@@ -167,14 +171,41 @@
 	Une inclusion est triviale.
 	\pause
 
-	On veut donc montrer que pour tout clavier $K \in \QRK$, il existe un automate fini le simulant.
-	\pause
+	On veut donc montrer que pour tout clavier $K \in \QRK$, il existe un automate fini le simulant. Pendant un calcul, on regarde la structure de la zone de texte :
+	
+	\begin{figure}[!h]
+		\centering
 
-	On sait que dans un calcul de $K$, les configurations sont toutes de la forme $(w,q,\varepsilon)$. On divise le mot $w$ en deux :
-	\begin{itemize}
-		\item un préfixe \emph{utile} qui ne sera jamais effacé.
-		\item un suffixe \emph{inutile} qui sera effacé pendant l'éxécution.
-	\end{itemize}
+
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+		
+		%Straight Lines [id:da6237929847746642] 
+		\draw    (100,115) -- (192.2,115) ;
+		%Straight Lines [id:da44668726290788974] 
+		\draw    (100,115) -- (100,136) ;
+		%Straight Lines [id:da904664921210427] 
+		\draw    (100,136) -- (192.2,136) ;
+		%Straight Lines [id:da8679254388000219] 
+		\draw    (138,115) -- (138,136) ;
+		%Straight Lines [id:da3704878663207596] 
+		\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (183.2,115) -- (183.2,136) ;
+		
+		% Text Node
+		\draw (102,118) node [anchor=north west][inner sep=0.75pt]   [align=left] {u};
+		% Text Node
+		\draw (140,118) node [anchor=north west][inner sep=0.75pt]   [align=left] {v};
+		% Text Node
+		\draw (102.5,138.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textit{\footnotesize{utile}}};
+		% Text Node
+		\draw (140.5,138.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textit{\footnotesize{inutile}}};
+		
+		
+		\end{tikzpicture}
+		
+	  \end{figure}
 \end{frame}
 \begin{frame}{Le lemme clé}
 	On va essayer de construire un automate $\A(K)$ dont les états seront $(s,k)$ pour $s$ un état de $K$, et $k$ la taille du suffixe inutile : l'automate lit une lettre quand $K$ écrit une lettre \emph{utile}.
@@ -183,9 +214,7 @@
 	\emph{A priori}, ces états ne sont pas en nombre fini\dots 
 	\pause
 	\begin{alertblock}{Lemme}
-		Soit $K$ un clavier à états de $\QRK$. Il existe un entier $\mathcal{B}(K)$, ne dépendant que de $K$, tel que pour tout mot $w \in \L(K)$,
-        il existe une exécution de $K$ qui écrit $w$ et dont le suffixe inutile est de longueur majorée par $\mathcal{B}(K)$ à chaque étape. \\
-        De plus, $\mathcal{B}(K)$ est polynomial en la taille de $K$.
+		Soit $K$ un clavier à états de $\QRK$. On peut borner le nombre de lettres inutiles nécessaires pour écrire tout mot de $\L(K)$ par un polynôme en $|K|$.
 	\end{alertblock}
 \end{frame}
 
@@ -203,11 +232,17 @@
 			\end{tikzcd}
 		$$
 	}
-	\pause
 	\begin{center}
-		Cet automate reconnait le même langage que $K$.
+		{\scriptsize Les transitions correspondantes à une touche $\alpha \xrightarrow{\retour^rw} \beta$}
+		\pause
+
+		Cet automate reconnaît le même langage que $K$.
 	\end{center}
 \end{frame}
+\begin{frame}[standout]
+	$\QRK = \Rat$
+\end{frame}
+
 \begin{frame}{Qu'a-t-on vraiment prouvé ?}
 	Nous sommes partis des claviers de $\RK$, donc des machines qui écrivent et effacent, et nous leurs avons rajouté des états.
 	\pause
@@ -218,7 +253,42 @@
 
 \section{Claviers symétriques}
 \begin{frame}{Définition}
-	
+	\begin{block}{Opérations symétriques}
+		Pour toute lettre $a \in A$, on définit les opérations d'écriture à gauche et à droite, $\egauche{a}$ et $\edroite{a}$, ainsi que l'effacement droit, noté $\suppr$.
+        On définit leur sémantique :
+        \begin{align*}
+            \conf{u}{v} \cdot \egauche{a} &= \conf{ua}{v}   \\
+            \conf{u}{v} \cdot \edroite{a} &= \conf{u}{av}   \\
+            \conf{u}{av} \cdot \suppr &= \conf{u}{v}        \\
+            \conf{u}{\varepsilon} \cdot \suppr &= \conf{u}{\varepsilon}
+        \end{align*}
+	\end{block} \pause
+	On s'intéresse à $\BK$ $\left(\{\overleftarrow{A},\overrightarrow{A}\}\right)$ et $\BRK$ $\left(\{\overleftarrow{A},\overrightarrow{A},\retour,\suppr\}\right)$.
 
+\end{frame}
+
+\begin{frame}{Une structure inhabituelle}
+	$\BK$ ne contient pas $\Rat$, et n'est pas contenu dedans non plus. 
+	\pause
+
+	Il n'est pas stable par union, et le caractère vide de l'intersection de deux langages de $\BK$ est indécidable.
+	
+\end{frame}
+
+\begin{frame}{La conjecture principale}
+	\begin{alertblock}{Conjecture}
+		On suppose que $\BRK \subset \Alg$
+	\end{alertblock}
+	En effet, les principaux exemples de langages de $\BRK$ non rationnels sont $a^nb^n$ (langage de $\{\egauche{a}\edroite{b}\}$), ou bien les palindromes (langage de $\{\egauche{a}\edroite{a},\egauche{b}\edroite{b}, \dots\}$).
+\end{frame}
+\begin{frame}{La conjecture principale}
+	\begin{alertblock}{Conjecture}
+		On suppose que $\BRK \subset \Alg$
+	\end{alertblock}
+	Cependant, la méthode consistant à borner les lettres inutiles ne fonctionne pas, comme le montre le clavier $\{\egauche{a}\suppr,\retour\edroite{b}\}$.
+\end{frame}
+
+\begin{frame}[standout]
+	Questions ?
 \end{frame}
 \end{document}

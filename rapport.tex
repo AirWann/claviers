@@ -242,9 +242,9 @@
         % inutile grâce à s_0,0BARRE \item on rajoute un état $init$ à notre clavier, et on rajoute, pour toute transition $(s_0,\retour^n w,s_{\alpha})$ une transition $(init,w,s_{\alpha})$ (\emph{pré-traitement initial})
         \item on considère $\A$ dont les états sont les états de $K$ dupliqués $2(\mathcal{B}(K) + 1)$ fois : pour $\alpha \in Q(K)$, on les note $s_{\alpha, i}$ et $\overline{s_{\alpha, i}}$, $0 \leqslant i \leqslant \mathcal{B}(K)$
         \begin{example}[Intuition]    
-            Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $s_\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $s_\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
+            Quand l'automate est dans l'état $s_{\alpha,k}$, le clavier est dans l'état $\alpha$ avec un suffixe inutile de taille $k$. Quand il est en $\overline{s_{\alpha,k}}$, le clavier se trouve en $\alpha$, avec un suffixe inutile de taille $k$ \emph{et aucune lettre utile avant}. 
         \end{example}
-        \item pour toute transition $s_{\alpha} \xrightarrow{\retour^r w} s_{\beta}$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
+        \item pour toute transition $\alpha \xrightarrow{\retour^r w} \beta$ de notre clavier à états, on crée dans $\A$ les transitions suivantes (voir figure \ref{ok}):
             \begin{enumerate}
                 \item pour tout $r \leqslant k \leqslant \mathcal{B}(K) - \sharp t$, $s_{\alpha, k} \xrightarrow{\varepsilon} s_{\beta, k + \sharp t}$
                 \item pour tout $0 \leqslant j < |w|$, $s_{\alpha, r} \xrightarrow{w[1,|w|-j]} s_{\beta, j}$
